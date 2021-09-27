@@ -74,6 +74,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import org.lwjgl.system.CallbackI;
 
 public class MenuHandlerBase extends GuiComponent {
 
@@ -110,7 +111,8 @@ public class MenuHandlerBase extends GuiComponent {
 	protected Map<AbstractWidget, VisibilityRequirementContainer> vanillaButtonVisibilityRequirementContainers = new HashMap<AbstractWidget, VisibilityRequirementContainer>();
 	//-----------------
 
-	protected Map<ButtonData, Float> delayAppearanceVanilla = new HashMap<ButtonData, Float>();
+	//TODO übernehmen 2.3.2
+	protected volatile Map<ButtonData, Float> delayAppearanceVanilla = new HashMap<ButtonData, Float>();
 	protected Map<ButtonData, Float> fadeInVanilla = new HashMap<ButtonData, Float>();
 	protected List<String> delayAppearanceFirstTime = new ArrayList<String>();
 	protected List<Long> delayAppearanceFirstTimeVanilla = new ArrayList<Long>();
@@ -547,10 +549,36 @@ public class MenuHandlerBase extends GuiComponent {
 			}
 		}
 
-		//TODO übernehmen
 		//Handle vanilla button visibility requirements
 		for (Map.Entry<AbstractWidget, VisibilityRequirementContainer> m : this.vanillaButtonVisibilityRequirementContainers.entrySet()) {
-			m.getKey().visible = m.getValue().isVisible();
+			//TODO übernehmen 2.3.1
+			boolean isBtnHidden = false;
+			for (ButtonData d : this.hidden) {
+				if (d.getButton() == m.getKey()) {
+					isBtnHidden = true;
+					break;
+				}
+			}
+			if (!isBtnHidden) {
+				//TODO übernehmen 2.3.2
+//				m.getKey().visible = m.getValue().isVisible();
+				PropertiesSection dummySec = new PropertiesSection("customization");
+				dummySec.addEntry("action", "vanilla_button_visibility_requirements");
+				ButtonData btn = null;
+				for (ButtonData d : ButtonCache.getButtons()) {
+					if (d.getButton() == m.getKey()) {
+						btn = d;
+						break;
+					}
+				}
+				if (btn != null) {
+					VanillaButtonCustomizationItem i = new VanillaButtonCustomizationItem(dummySec, btn, this);
+					i.visibilityRequirements = m.getValue();
+					this.backgroundRenderItems.add(i);
+				}
+				//--------------------
+			}
+			//----------------
 		}
 
 		//TODO übernehmen
@@ -740,7 +768,7 @@ public class MenuHandlerBase extends GuiComponent {
 			//TODO übernehmen
 			if (action.equalsIgnoreCase("renamebutton") || action.equalsIgnoreCase("setbuttonlabel")) {
 				if (b != null) {
-					backgroundRenderItems.add(new VanillaButtonCustomizationItem(sec, bd));
+					backgroundRenderItems.add(new VanillaButtonCustomizationItem(sec, bd, this));
 				}
 			}
 
@@ -876,16 +904,16 @@ public class MenuHandlerBase extends GuiComponent {
 			//TODO übernehmen
 			if (action.equalsIgnoreCase("vanilla_button_visibility_requirements")) {
 				if (b != null) {
-					this.vanillaButtonVisibilityRequirementContainers.put(b, new VanillaButtonCustomizationItem(sec, bd).visibilityRequirementContainer);
+					this.vanillaButtonVisibilityRequirementContainers.put(b, new VanillaButtonCustomizationItem(sec, bd, this).visibilityRequirementContainer);
 				}
 			}
 
 			if (action.equalsIgnoreCase("addhoversound")) {
 				if (b != null) {
 					if ((renderOrder != null) && renderOrder.equalsIgnoreCase("background")) {
-						backgroundRenderItems.add(new VanillaButtonCustomizationItem(sec, bd));
+						backgroundRenderItems.add(new VanillaButtonCustomizationItem(sec, bd, this));
 					} else {
-						frontRenderItems.add(new VanillaButtonCustomizationItem(sec, bd));
+						frontRenderItems.add(new VanillaButtonCustomizationItem(sec, bd, this));
 					}
 				}
 			}
@@ -893,9 +921,9 @@ public class MenuHandlerBase extends GuiComponent {
 			if (action.equalsIgnoreCase("sethoverlabel")) {
 				if (b != null) {
 					if ((renderOrder != null) && renderOrder.equalsIgnoreCase("background")) {
-						backgroundRenderItems.add(new VanillaButtonCustomizationItem(sec, bd));
+						backgroundRenderItems.add(new VanillaButtonCustomizationItem(sec, bd, this));
 					} else {
-						frontRenderItems.add(new VanillaButtonCustomizationItem(sec, bd));
+						frontRenderItems.add(new VanillaButtonCustomizationItem(sec, bd, this));
 					}
 				}
 			}
@@ -1152,8 +1180,15 @@ public class MenuHandlerBase extends GuiComponent {
 			
 			boolean fadein = this.fadeInVanilla.containsKey(d);
 			float delaysec = this.delayAppearanceVanilla.get(d);
+
+			//TODO übernehmen 2.3.2
+			VisibilityRequirementContainer vis = this.vanillaButtonVisibilityRequirementContainers.get(d.getButton());
 			
 			d.getButton().visible = false;
+			//TODO übernehmen 2.3.2
+			if (vis != null) {
+				vis.forceHide = true;
+			}
 			
 			if (fadein) {
 				d.getButton().setAlpha(0.1F);
@@ -1181,6 +1216,10 @@ public class MenuHandlerBase extends GuiComponent {
 							if (!fade) {
 								if (now >= start + (int)delay) {
 									d.getButton().visible = true;
+									//TODO übernehmen 2.3.2
+									if (vis != null) {
+										vis.forceHide = false;
+									}
 									if (!fadein) {
 										return;
 									} else {
@@ -1801,6 +1840,26 @@ public class MenuHandlerBase extends GuiComponent {
 			return null;
 		}
 		
+	}
+
+	//TODO übernehmen 2.3.2
+	public boolean isVanillaButtonDelayed(AbstractWidget w) {
+		for (ButtonData d : this.delayAppearanceVanilla.keySet()) {
+			if (d.getButton() == w) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	//TODO übernehmen 2.3.2
+	public boolean isVanillaButtonHidden(AbstractWidget w) {
+		for (ButtonData d : this.hidden) {
+			if (d.getButton() == w) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public static class SharedLayoutProperties {

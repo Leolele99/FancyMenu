@@ -5,7 +5,6 @@ import java.io.File;
 import de.keksuccino.fancymenu.menu.fancy.customlocals.CustomLocalsHandler;
 import de.keksuccino.fancymenu.menu.fancy.item.visibilityrequirements.VisibilityRequirementHandler;
 import de.keksuccino.fancymenu.menu.servers.ServerCache;
-import net.minecraft.client.Options;
 import net.minecraft.resources.ResourceLocation;
 
 import de.keksuccino.fancymenu.keybinding.Keybinding;
@@ -31,7 +30,7 @@ import net.minecraftforge.fml.loading.FMLEnvironment;
 public class FancyMenu {
 
 	//TODO übernehmen
-	public static final String VERSION = "2.3.0";
+	public static final String VERSION = "2.3.3";
 	
 	public static Config config;
 	
@@ -46,8 +45,6 @@ public class FancyMenu {
 	
 	public FancyMenu() {
 		try {
-
-			Options
 
 //			ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.DISPLAYTEST, () -> Pair.of(() -> FMLNetworkConstants.IGNORESERVERONLY, (a, b) -> true));
 			
