@@ -1,10 +1,8 @@
-//TODO übernehmen
 package de.keksuccino.fancymenu.menu.servers;
 
 import de.keksuccino.fancymenu.menu.fancy.MenuCustomization;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.screens.multiplayer.ServerSelectionList;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.client.multiplayer.ServerStatusPinger;
 import net.minecraft.network.chat.Component;
@@ -18,7 +16,6 @@ import java.util.Map;
 
 public class ServerCache {
 
-    //TODO übernehmen 2.3.3
     static final Component CANT_CONNECT_TEXT = (new TranslatableComponent("multiplayer.status.cannot_connect")).withStyle(ChatFormatting.DARK_RED);
 
     protected static ServerStatusPinger pinger = new ServerStatusPinger();
@@ -35,7 +32,6 @@ public class ServerCache {
                     e.printStackTrace();
                 }
                 try {
-                    //TODO übernehmen 2.3.2
                     Thread.sleep(30000);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -47,7 +43,6 @@ public class ServerCache {
     public static void cacheServer(ServerData server) {
         if (server.ip != null) {
             try {
-                //TODO übernehmen 2.3.3
                 server.ping = -1L;
                 servers.put(server.ip, server);
                 pingServers();
@@ -72,7 +67,6 @@ public class ServerCache {
         servers.clear();
     }
 
-    //TODO übernehmen 2.3.3
     public static void pingServers() {
         List<ServerData> l = new ArrayList<ServerData>();
         l.addAll(servers.values());

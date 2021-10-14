@@ -462,7 +462,6 @@ public class AnimationHandler {
 		return ready;
 	}
 
-	//TODO übernehmen NEU
 	public static void setupAnimationSizes() {
 		for (IAnimationRenderer a : getAnimations()) {
 			if (a instanceof ResourcePackAnimationRenderer) {

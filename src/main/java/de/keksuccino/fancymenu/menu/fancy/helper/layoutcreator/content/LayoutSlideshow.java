@@ -42,7 +42,6 @@ public class LayoutSlideshow extends LayoutElement {
 			p1.addEntry("width", "%guiwidth%");
 		} else {
 			p1.addEntry("x", "" + this.object.posX);
-			//TODO übernehmen
 			p1.addEntry("width", "" + this.object.getWidth());
 		}
 		if (this.stretchY) {
@@ -50,11 +49,9 @@ public class LayoutSlideshow extends LayoutElement {
 			p1.addEntry("height", "%guiheight%");
 		} else {
 			p1.addEntry("y", "" + this.object.posY);
-			//TODO übernehmen
 			p1.addEntry("height", "" + this.object.getHeight());
 		}
 
-		//TODO übernehmen
 		this.addVisibilityPropertiesTo(p1);
 
 		l.add(p1);

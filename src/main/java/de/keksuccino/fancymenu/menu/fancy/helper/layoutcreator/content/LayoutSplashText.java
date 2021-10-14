@@ -220,7 +220,6 @@ public class LayoutSplashText extends LayoutElement {
 		p1.addEntry("refresh", "" + this.getObject().refreshOnMenuReload);
 		p1.addEntry("bouncing", "" + this.getObject().bounce);
 
-		//TODO übernehmen
 		this.addVisibilityPropertiesTo(p1);
 		
 		l.add(p1);
@@ -228,7 +227,6 @@ public class LayoutSplashText extends LayoutElement {
 		return l;
 	}
 
-	//TODO übernehmen
 	@Override
 	protected void renderBorder(PoseStack matrix, int mouseX, int mouseY) {
 		//horizontal line top

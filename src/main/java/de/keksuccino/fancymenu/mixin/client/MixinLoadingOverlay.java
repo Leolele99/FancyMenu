@@ -24,7 +24,6 @@ public abstract class MixinLoadingOverlay extends GuiComponent {
 	@Shadow private long fadeOutStart;
 	@Shadow private long fadeInStart;
 
-	//TODO übernehmen
 	@Redirect(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/screens/Screen;render(Lcom/mojang/blaze3d/vertex/PoseStack;IIF)V"), method = "render")
 	private void onRenderCurrentScreenInRender(Screen screen, PoseStack matrixStack, int mouseX, int mouseY, float partialTicks) {
 		if (!MenuCustomization.isMenuCustomizable(screen)) {
@@ -32,7 +31,6 @@ public abstract class MixinLoadingOverlay extends GuiComponent {
 		}
 	}
 
-	//TODO übernehmen (remove cancellable)
 	@Inject(at = @At("HEAD"), method = "render")
 	private void onRender(PoseStack matrix, int mouseX, int mouseY, float partialTicks, CallbackInfo info) {
 		if (!FancyMenu.isDrippyLoadingScreenLoaded()) {
@@ -56,7 +54,6 @@ public abstract class MixinLoadingOverlay extends GuiComponent {
 		}
 	}
 
-	//TODO übernehmen (remove cancellable)
 	@Inject(at = @At("HEAD"), method = "drawProgressBar")
 	private void onRenderLoadingBar(PoseStack matrix, int i1, int i2, int i3, int i4, float f1, CallbackInfo info) {
 		MixinCache.isSplashScreenRendering = false;

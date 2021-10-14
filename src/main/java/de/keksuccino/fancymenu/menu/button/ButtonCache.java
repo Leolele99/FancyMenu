@@ -30,7 +30,6 @@ public class ButtonCache {
 	private static Screen current = null;
 	private static boolean cached = false;
 	private static boolean caching = false;
-	//TODO übernehmen
 	private static Map<String, AbstractWidget> customButtons = new HashMap<String, AbstractWidget>();
 
 	@SubscribeEvent
@@ -132,14 +131,15 @@ public class ButtonCache {
 				if (!buttons.containsKey(id.getId())) {
 					buttons.put(id.getId(), new ButtonData(button.getButton(), id.getId(), LocaleUtils.getKeyForString(button.getButton().getMessage().getString()), s));
 				} else {
+					//TODO übernehmen (ganzen text)
 					if (FancyMenu.config.getOrDefault("showdebugwarnings", true)) {
 						System.out.println("");
 						System.out.println("## WARNING [FANCYMENU]: Overlapping buttons found! ##");
-						System.out.println("At: X=" + button.x + " Y=" + button.y + "!");
+						System.out.println("At: X=" + button.x + " Y=" + button.y);
 						System.out.println("Labels: " + button.label + ", " + buttons.get(id.getId()).label);
 						System.out.println("");
-						System.out.println("If one or both of these buttons are added by a mod, please contact the developer(s) to fix this!");
-						System.out.println("FancyMenu cannot customize overlapping buttons!");
+						System.out.println("FancyMenu found overlapping buttons and wasn't able to generate working IDs for them to make them customizable!");
+						System.out.println("Please report this to the mod author of FancyMenu and give informations about what buttons caused it.");
 						System.out.println("#####################################################");
 						System.out.println("");
 					}
@@ -152,6 +152,8 @@ public class ButtonCache {
 	private static List<ButtonData> cacheButtons(Screen s, int screenWidth, int screenHeight) {
 		caching = true;
 		List<ButtonData> buttonlist = new ArrayList<ButtonData>();
+		//TODO übernehmen
+		List<Long> ids = new ArrayList<Long>();
 		try {
 			//Resetting the button list
 			Field f0 = ReflectionHelper.findField(Screen.class, "f_169369_"); //renderables
@@ -175,8 +177,11 @@ public class ButtonCache {
 					String idRaw = w.x + "" + w.y;
 					long id = 0;
 					if (MathUtils.isLong(idRaw)) {
-						id = Long.parseLong(idRaw);
+						//TODO übernehmen
+						id = getAvailableIdFromBaseId(Long.parseLong(idRaw), ids);
 					}
+					//TODO übernehmen
+					ids.add(id);
 					buttonlist.add(new ButtonData(w, id, LocaleUtils.getKeyForString(w.getMessage().getString()), s));
 				}
 			}
@@ -187,41 +192,16 @@ public class ButtonCache {
 		return buttonlist;
 	}
 
-//	public static void replaceButton(long id, AbstractWidget w) {
-//		ButtonData d = getButtonForId(id);
-//		AbstractWidget ori = null;
-//		if ((d != null) && (current != null)) {
-//			try {
-//				Field f = ObfuscationReflectionHelper.findField(Screen.class, "buttons");
-//				List<Widget> l = (List<Widget>) f.get(current);
-//				List<Widget> l2 = new ArrayList<Widget>();
-//
-//				for (Widget b : l) {
-//					if (b == d.getButton()) {
-//						l2.add(w);
-//						ori = b;
-//					} else {
-//						l2.add(b);
-//					}
-//				}
-//
-//				f.set(current, l2);
-//				if (ori != null) {
-//					replaced.put(d.getId(), ori);
-//				}
-//				d.replaceButton(w);
-//			} catch (Exception e) {
-//				e.printStackTrace();
-//			}
-//		}
-//	}
-
-//	public static void replaceButton(String key, AbstractWidget w) {
-//		ButtonData d = getButtonForKey(key);
-//		if (d != null) {
-//			replaceButton(d.getId(), w);
-//		}
-//	}
+	//TODO übernehmen
+	protected static Long getAvailableIdFromBaseId(long baseId, List<Long> ids) {
+		if (ids.contains(baseId)) {
+			String newId = baseId + "1";
+			if (MathUtils.isLong(newId)) {
+				return getAvailableIdFromBaseId(Long.parseLong(newId), ids);
+			}
+		}
+		return baseId;
+	}
 
 	public static void cacheFrom(Screen s, int screenWidth, int screenHeight) {
 		updateButtons(s);
@@ -307,17 +287,14 @@ public class ButtonCache {
 		return caching;
 	}
 
-	//TODO übernehmen
 	public static void clearCustomButtonCache() {
 		customButtons.clear();
 	}
 
-	//TODO übernehmen
 	public static void cacheCustomButton(String id, AbstractWidget w) {
 		customButtons.put(id, w);
 	}
 
-	//TODO übernehmen
 	public static AbstractWidget getCustomButton(String id) {
 		return customButtons.get(id);
 	}

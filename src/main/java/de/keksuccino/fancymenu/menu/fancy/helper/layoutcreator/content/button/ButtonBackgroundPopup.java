@@ -1,4 +1,3 @@
-//TODO übernehmen
 package de.keksuccino.fancymenu.menu.fancy.helper.layoutcreator.content.button;
 
 import java.io.File;
@@ -111,7 +110,6 @@ public class ButtonBackgroundPopup extends FMPopup {
                 this.normalBackgroundImageTextField.setValue(this.customizationContainer.normalBackground);
             }
         }
-        //TODO übernehmen 2.3.2
         this.normalBackgroundImageTextField.setMaxLength(10000);
 
         this.hoverBackgroundImageTextField = new AdvancedTextField(font, 0, 0, 200, 20, true, null);
@@ -120,7 +118,6 @@ public class ButtonBackgroundPopup extends FMPopup {
                 this.hoverBackgroundImageTextField.setValue(this.customizationContainer.hoverBackground);
             }
         }
-        //TODO übernehmen 2.3.2
         this.hoverBackgroundImageTextField.setMaxLength(10000);
 
         this.chooseNormalBackgroundImageButton = new AdvancedButton(0, 0, 100, 20, Locals.localize("fancymenu.helper.editor.items.buttons.buttonbackground.type.image.chooseimage"), true, (press) -> {

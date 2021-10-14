@@ -24,24 +24,14 @@ import net.minecraft.network.chat.TextComponent;
 
 public class LayoutButton extends LayoutElement {
 
-	//TODO übernehmen
 	public MenuHandlerBase.ButtonCustomizationContainer customizationContainer;
 	public String actionContent = "";
 	public String actionType = "openlink";
-	//TODO übernehmen
-//	public String backNormal = null;
-//	public String backHovered = null;
-//	public String hoverSound;
-//	public String hoverLabel;
 	public String onlydisplayin = null;
-	//TODO übernehmen
-//	public String clicksound = null;
-//	public String description;
 	private AdvancedButton onlyOutgameBtn;
 	private AdvancedButton onlySingleplayerBtn;
 	private AdvancedButton onlyMultiplayerBtn;
 
-	//TODO übernehmen
 	public LayoutButton(MenuHandlerBase.ButtonCustomizationContainer customizationContainer, int width, int height, @Nonnull String label, @Nullable String onlydisplayin, LayoutEditorScreen handler) {
 		super(new LayoutButtonDummyCustomizationItem(customizationContainer, label, width, height, 0, 0), true, handler, false);
 		this.onlydisplayin = onlydisplayin;
@@ -57,21 +47,6 @@ public class LayoutButton extends LayoutElement {
 
 		super.init();
 
-		//TODO übernehmen (nach unten vor hover label verschieben)
-//		AdvancedButton b2 = new AdvancedButton(0, 0, 0, 16, Locals.localize("helper.creator.items.button.editlabel"), (press) -> {
-//			FMTextInputPopup i = new DynamicValueInputPopup(new Color(0, 0, 0, 0), "§l" + Locals.localize("helper.creator.items.button.editlabel") + ":", null, 240, (call) -> {
-//				if (call != null) {
-//					if (!this.object.value.equals(call)) {
-//						this.handler.history.saveSnapshot(this.handler.history.createSnapshot());
-//					}
-//					this.object.value = call;
-//				}
-//			});
-//			i.setText(StringUtils.convertFormatCodes(this.object.value, "§", "&"));
-//			PopupHandler.displayPopup(i);
-//		});
-//		this.rightclickMenu.addContent(b2);
-
 		AdvancedButton b3 = new AdvancedButton(0, 0, 0, 16, Locals.localize("helper.creator.custombutton.config"), (press) -> {
 			ButtonActionPopup i = new ButtonActionPopup(this::setActionContentCallback, this::setActionTypeCallback, this.actionType);
 			i.setText(this.actionContent);
@@ -79,17 +54,14 @@ public class LayoutButton extends LayoutElement {
 		});
 		this.rightclickMenu.addContent(b3);
 
-		//TODO übernehmen
 		this.rightclickMenu.addSeparator();
 
-		//TODO übernehmen (dafür alte button texture settings weg)
 		AdvancedButton buttonBackgroundButton = new AdvancedButton(0, 0, 0, 0, Locals.localize("fancymenu.helper.editor.items.buttons.buttonbackground"), (press) -> {
 			ButtonBackgroundPopup pop = new ButtonBackgroundPopup(this.handler, this.customizationContainer);
 			PopupHandler.displayPopup(pop);
 		});
 		this.rightclickMenu.addContent(buttonBackgroundButton);
 
-		//TODO übernehmen
 		String loopAniLabel = Locals.localize("fancymenu.helper.editor.items.buttons.buttonbackground.loopanimation.on");
 		if (!this.customizationContainer.loopAnimation) {
 			loopAniLabel = Locals.localize("fancymenu.helper.editor.items.buttons.buttonbackground.loopanimation.off");
@@ -106,7 +78,6 @@ public class LayoutButton extends LayoutElement {
 		loopBackgroundAnimationButton.setDescription(StringUtils.splitLines(Locals.localize("fancymenu.helper.editor.items.buttons.buttonbackground.loopanimation.btn.desc"), "%n%"));
 		this.rightclickMenu.addContent(loopBackgroundAnimationButton);
 
-		//TODO übernehmen
 		String restartAniLabel = Locals.localize("fancymenu.helper.editor.items.buttons.buttonbackground.restartonhover.on");
 		if (!this.customizationContainer.restartAnimationOnHover) {
 			restartAniLabel = Locals.localize("fancymenu.helper.editor.items.buttons.buttonbackground.restartonhover.off");
@@ -123,10 +94,8 @@ public class LayoutButton extends LayoutElement {
 		restartAnimationOnHoverButton.setDescription(StringUtils.splitLines(Locals.localize("fancymenu.helper.editor.items.buttons.buttonbackground.restartonhover.btn.desc"), "%n%"));
 		this.rightclickMenu.addContent(restartAnimationOnHoverButton);
 
-		//TODO übernehmen
 		this.rightclickMenu.addSeparator();
 
-		//TODO übernehmen (von oben hierher verschieben + änderungen im code übernehmen)
 		AdvancedButton b2 = new AdvancedButton(0, 0, 0, 16, Locals.localize("helper.creator.items.button.editlabel"), (press) -> {
 			FMTextInputPopup i = new DynamicValueInputPopup(new Color(0, 0, 0, 0), "§l" + Locals.localize("helper.creator.items.button.editlabel") + ":", null, 240, (call) -> {
 				if (call != null) {
@@ -141,10 +110,8 @@ public class LayoutButton extends LayoutElement {
 		});
 		this.rightclickMenu.addContent(b2);
 
-		//TODO übernehmen
 		this.rightclickMenu.addSeparator();
 
-		//TODO übernehmen
 		AdvancedButton b5 = new AdvancedButton(0, 0, 0, 16, Locals.localize("helper.creator.items.button.hoverlabel"), (press) -> {
 			FMTextInputPopup ip = new DynamicValueInputPopup(new Color(0, 0, 0, 0), "", null, 240, (call) -> {
 				if (call != null) {
@@ -163,7 +130,6 @@ public class LayoutButton extends LayoutElement {
 		});
 		this.rightclickMenu.addContent(b5);
 
-		//TODO übernehmen
 		AdvancedButton b6 = new AdvancedButton(0, 0, 0, 16, Locals.localize("helper.creator.items.button.hoverlabel.reset"), (press) -> {
 			if (this.customizationContainer.hoverLabel != null) {
 				this.handler.history.saveSnapshot(this.handler.history.createSnapshot());
@@ -173,10 +139,8 @@ public class LayoutButton extends LayoutElement {
 		});
 		this.rightclickMenu.addContent(b6);
 
-		//TODO übernehmen
 		this.rightclickMenu.addSeparator();
 
-		//TODO übernehmen
 		AdvancedButton b7 = new AdvancedButton(0, 0, 0, 16, Locals.localize("helper.creator.items.button.hoversound"), (press) -> {
 			ChooseFilePopup cf = new ChooseFilePopup((call) -> {
 				if (call != null) {
@@ -208,16 +172,6 @@ public class LayoutButton extends LayoutElement {
 		});
 		this.rightclickMenu.addContent(b7);
 
-		//TODO übernehmen
-//		AdvancedButton b8 = new AdvancedButton(0, 0, 0, 16, Locals.localize("helper.creator.items.button.hoversound.reset"), (press) -> {
-//			this.handler.history.saveSnapshot(this.handler.history.createSnapshot());
-//
-//			this.hoverSound = null;
-//			this.rightclickMenu.closeMenu();
-//		});
-//		this.rightclickMenu.addContent(b8);
-
-		//TODO übernehmen
 		AdvancedButton b10 = new AdvancedButton(0, 0, 0, 16, Locals.localize("helper.creator.items.button.clicksound"), (press) -> {
 			ChooseFilePopup cf = new ChooseFilePopup((call) -> {
 				if (call != null) {
@@ -248,21 +202,10 @@ public class LayoutButton extends LayoutElement {
 		});
 		this.rightclickMenu.addContent(b10);
 
-		//TODO übernehmen
-//		AdvancedButton b11 = new AdvancedButton(0, 0, 0, 16, Locals.localize("helper.creator.items.button.clicksound.reset"), (press) -> {
-//			this.handler.history.saveSnapshot(this.handler.history.createSnapshot());
-//
-//			this.clicksound = null;
-//			this.rightclickMenu.closeMenu();
-//		});
-//		this.rightclickMenu.addContent(b11);
-
-		//TODO übernehmen
 		AdvancedButton b12 = new AdvancedButton(0, 0, 0, 16, Locals.localize("helper.creator.items.button.btndescription"), (press) -> {
 			FMTextInputPopup in = new DynamicValueInputPopup(new Color(0, 0, 0, 0), Locals.localize("helper.creator.items.button.btndescription"), null, 240, (call) -> {
 				if (call != null) {
 					if (!call.replace(" ", "").equals("")) {
-						//TODO übernehmen 2.3.2
 						if ((this.customizationContainer.buttonDescription == null) || !this.customizationContainer.buttonDescription.equals(call)) {
 							this.handler.history.saveSnapshot(this.handler.history.createSnapshot());
 						}
@@ -344,19 +287,6 @@ public class LayoutButton extends LayoutElement {
 		});
 		this.rightclickMenu.addContent(b10);
 	}
-
-	//TODO übernehmen
-//	private void editLabelCallback(String text) {
-//		if (text == null) {
-//			return;
-//		} else {
-//			if ((this.object.value == null) || !this.object.value.equals(StringUtils.convertFormatCodes(text, "&", "§"))) {
-//				this.handler.history.saveSnapshot(this.handler.history.createSnapshot());
-//			}
-//
-//			this.object.value = StringUtils.convertFormatCodes(text, "&", "§");
-//		}
-//	}
 	
 	private void setActionContentCallback(String content) {
 		this.handler.history.saveSnapshot(this.handler.history.createSnapshot());
@@ -392,7 +322,6 @@ public class LayoutButton extends LayoutElement {
 				s.addEntry("width", "%guiwidth%");
 			} else {
 				s.addEntry("x", "" + this.object.posX);
-				//TODO übernehmen
 				s.addEntry("width", "" + this.object.getWidth());
 			}
 			if (this.stretchY) {
@@ -400,13 +329,11 @@ public class LayoutButton extends LayoutElement {
 				s.addEntry("height", "%guiheight%");
 			} else {
 				s.addEntry("y", "" + this.object.posY);
-				//TODO übernehmen
 				s.addEntry("height", "" + this.object.getHeight());
 			}
 			s.addEntry("orientation", this.object.orientation);
 			s.addEntry("buttonaction", this.actionType);
 			s.addEntry("value", this.actionContent);
-			//TODO übernehmen
 			if ((this.customizationContainer.normalBackground != null) || (this.customizationContainer.hoverBackground != null)) {
 				if (this.customizationContainer.normalBackground != null) {
 					if (this.customizationContainer.normalBackground.startsWith("animation:")) {
@@ -425,31 +352,24 @@ public class LayoutButton extends LayoutElement {
 					}
 				}
 			}
-			//TODO übernehmen
 			s.addEntry("restartbackgroundanimations", "" + this.customizationContainer.restartAnimationOnHover);
-			//TODO übernehmen
 			s.addEntry("loopbackgroundanimations", "" + this.customizationContainer.loopAnimation);
-			//TODO übernehmen
 			if (this.customizationContainer.hoverSound != null) {
 				s.addEntry("hoversound", this.customizationContainer.hoverSound);
 			}
-			//TODO übernehmen
 			if (this.customizationContainer.hoverLabel != null) {
 				s.addEntry("hoverlabel", this.customizationContainer.hoverLabel);
 			}
 			if (this.onlydisplayin != null) {
 				s.addEntry("onlydisplayin", this.onlydisplayin);
 			}
-			//TODO übernehmen
 			if (this.customizationContainer.clickSound != null) {
 				s.addEntry("clicksound", this.customizationContainer.clickSound);
 			}
-			//TODO übernehmen
 			if (this.customizationContainer.buttonDescription != null) {
 				s.addEntry("description", this.customizationContainer.buttonDescription);
 			}
 
-			//TODO übernehmen
 			this.addVisibilityPropertiesTo(s);
 
 			l.add(s);

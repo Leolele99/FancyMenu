@@ -74,7 +74,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 import net.minecraftforge.client.event.GuiScreenEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import org.lwjgl.system.CallbackI;
 
 public class MenuHandlerBase extends GuiComponent {
 
@@ -94,7 +93,6 @@ public class MenuHandlerBase extends GuiComponent {
 	protected double panoPos = 0.0;
 	protected boolean panoMoveBack = false;
 	protected boolean panoStop = false;
-	//TODO übernehmen
 	protected boolean keepBackgroundAspectRatio = false;
 
 	protected ExternalTexturePanoramaRenderer panoramacube;
@@ -102,16 +100,9 @@ public class MenuHandlerBase extends GuiComponent {
 	protected ExternalTextureSlideshowRenderer slideshow;
 
 	protected List<ButtonData> hidden = new ArrayList<ButtonData>();
-	//TODO übernehmen
-//	protected Map<ButtonData, String> vanillaClickSounds = new HashMap<ButtonData, String>();
-//	protected Map<ButtonData, String> vanillaIdleTextures = new HashMap<ButtonData, String>();
-//	protected Map<ButtonData, String> vanillaHoverTextures = new HashMap<ButtonData, String>();
-	//TODO übernehmen
 	protected Map<AbstractWidget, ButtonCustomizationContainer> vanillaButtonCustomizations = new HashMap<AbstractWidget, ButtonCustomizationContainer>();
 	protected Map<AbstractWidget, VisibilityRequirementContainer> vanillaButtonVisibilityRequirementContainers = new HashMap<AbstractWidget, VisibilityRequirementContainer>();
-	//-----------------
 
-	//TODO übernehmen 2.3.2
 	protected volatile Map<ButtonData, Float> delayAppearanceVanilla = new HashMap<ButtonData, Float>();
 	protected Map<ButtonData, Float> fadeInVanilla = new HashMap<ButtonData, Float>();
 	protected List<String> delayAppearanceFirstTime = new ArrayList<String>();
@@ -345,7 +336,6 @@ public class MenuHandlerBase extends GuiComponent {
 			}
 		}
 
-		//TODO übernehmen
 		//Handle auto scaling
 		if ((this.sharedLayoutProps.autoScaleBaseWidth != 0) && (this.sharedLayoutProps.autoScaleBaseHeight != 0)) {
 			Window m = Minecraft.getInstance().getWindow();
@@ -397,7 +387,6 @@ public class MenuHandlerBase extends GuiComponent {
 				}
 			}
 
-			//TODO übernehmen
 			if (action.equalsIgnoreCase("autoscale")) {
 				String baseWidth = sec.getEntryValue("basewidth");
 				if (MathUtils.isInteger(baseWidth)) {
@@ -454,14 +443,8 @@ public class MenuHandlerBase extends GuiComponent {
 		this.hidden.clear();
 		this.delayAppearanceVanilla.clear();
 		this.fadeInVanilla.clear();
-		//TODO übernehmen
-//		this.vanillaClickSounds.clear();
-//		this.vanillaIdleTextures.clear();
-//		this.vanillaHoverTextures.clear();
-		//TODO übernehmen
 		this.vanillaButtonCustomizations.clear();
 		this.vanillaButtonVisibilityRequirementContainers.clear();
-		//-----------
 		this.audio.clear();
 		this.frontRenderItems.clear();
 		this.backgroundRenderItems.clear();
@@ -551,7 +534,6 @@ public class MenuHandlerBase extends GuiComponent {
 
 		//Handle vanilla button visibility requirements
 		for (Map.Entry<AbstractWidget, VisibilityRequirementContainer> m : this.vanillaButtonVisibilityRequirementContainers.entrySet()) {
-			//TODO übernehmen 2.3.1
 			boolean isBtnHidden = false;
 			for (ButtonData d : this.hidden) {
 				if (d.getButton() == m.getKey()) {
@@ -560,8 +542,6 @@ public class MenuHandlerBase extends GuiComponent {
 				}
 			}
 			if (!isBtnHidden) {
-				//TODO übernehmen 2.3.2
-//				m.getKey().visible = m.getValue().isVisible();
 				PropertiesSection dummySec = new PropertiesSection("customization");
 				dummySec.addEntry("action", "vanilla_button_visibility_requirements");
 				ButtonData btn = null;
@@ -576,12 +556,9 @@ public class MenuHandlerBase extends GuiComponent {
 					i.visibilityRequirements = m.getValue();
 					this.backgroundRenderItems.add(i);
 				}
-				//--------------------
 			}
-			//----------------
 		}
 
-		//TODO übernehmen
 		for (Map.Entry<ButtonData, Float> m : this.delayAppearanceVanilla.entrySet()) {
 			if (!hidden.contains(m.getKey())) {
 				if (this.visibilityRequirementsMet(m.getKey().getButton())) {
@@ -590,7 +567,6 @@ public class MenuHandlerBase extends GuiComponent {
 			}
 		}
 
-		//TODO übernehmen
 		//Cache custom buttons
 		ButtonCache.clearCustomButtonCache();
 		for (CustomizationItemBase c : this.backgroundRenderItems) {
@@ -603,7 +579,6 @@ public class MenuHandlerBase extends GuiComponent {
 				ButtonCache.cacheCustomButton(c.getActionId(), ((ButtonCustomizationItem) c).button);
 			}
 		}
-		//-----------------
 
 	}
 
@@ -621,7 +596,6 @@ public class MenuHandlerBase extends GuiComponent {
 				}
 			}
 
-			//TODO übernehmen
 			if (action.equalsIgnoreCase("backgroundoptions")) {
 				String keepAspect = sec.getEntryValue("keepaspectratio");
 				if ((keepAspect != null) && keepAspect.equalsIgnoreCase("true")) {
@@ -765,7 +739,6 @@ public class MenuHandlerBase extends GuiComponent {
 				}
 			}
 
-			//TODO übernehmen
 			if (action.equalsIgnoreCase("renamebutton") || action.equalsIgnoreCase("setbuttonlabel")) {
 				if (b != null) {
 					backgroundRenderItems.add(new VanillaButtonCustomizationItem(sec, bd, this));
@@ -859,7 +832,6 @@ public class MenuHandlerBase extends GuiComponent {
 				}
 			}
 
-			//TODO übernehmen
 			if (action.equalsIgnoreCase("setbuttontexture")) {
 				if (b != null) {
 					String loopBackAnimations = sec.getEntryValue("loopbackgroundanimations");
@@ -891,7 +863,6 @@ public class MenuHandlerBase extends GuiComponent {
 				}
 			}
 
-			//TODO übernehmen
 			if (action.equalsIgnoreCase("setbuttonclicksound")) {
 				if (b != null) {
 					String path = sec.getEntryValue("path");
@@ -901,7 +872,6 @@ public class MenuHandlerBase extends GuiComponent {
 				}
 			}
 
-			//TODO übernehmen
 			if (action.equalsIgnoreCase("vanilla_button_visibility_requirements")) {
 				if (b != null) {
 					this.vanillaButtonVisibilityRequirementContainers.put(b, new VanillaButtonCustomizationItem(sec, bd, this).visibilityRequirementContainer);
@@ -1181,11 +1151,9 @@ public class MenuHandlerBase extends GuiComponent {
 			boolean fadein = this.fadeInVanilla.containsKey(d);
 			float delaysec = this.delayAppearanceVanilla.get(d);
 
-			//TODO übernehmen 2.3.2
 			VisibilityRequirementContainer vis = this.vanillaButtonVisibilityRequirementContainers.get(d.getButton());
 			
 			d.getButton().visible = false;
-			//TODO übernehmen 2.3.2
 			if (vis != null) {
 				vis.forceHide = true;
 			}
@@ -1216,7 +1184,6 @@ public class MenuHandlerBase extends GuiComponent {
 							if (!fade) {
 								if (now >= start + (int)delay) {
 									d.getButton().visible = true;
-									//TODO übernehmen 2.3.2
 									if (vis != null) {
 										vis.forceHide = false;
 									}
@@ -1304,7 +1271,6 @@ public class MenuHandlerBase extends GuiComponent {
 			//Rendering the background animation to the menu
 			if (this.canRenderBackground()) {
 				if ((this.backgroundAnimation != null) && this.backgroundAnimation.isReady()) {
-					//TODO übernehmen (ganzen teil)
 					boolean b = this.backgroundAnimation.isStretchedToStreensize();
 					int wOri = this.backgroundAnimation.getWidth();
 					int hOri = this.backgroundAnimation.getHeight();
@@ -1331,13 +1297,11 @@ public class MenuHandlerBase extends GuiComponent {
 					this.backgroundAnimation.setPosX(xOri);
 					this.backgroundAnimation.setPosY(yOri);
 					this.backgroundAnimation.setStretchImageToScreensize(b);
-					//-------------------------
 				} else if (this.backgroundTexture != null) {
 					RenderSystem.enableBlend();
 					RenderUtils.bindTexture(this.backgroundTexture.getResourceLocation());
 
 					if (!this.panoramaback) {
-						//TODO übernehmen (kompletten teil; if + else)
 						if (!this.keepBackgroundAspectRatio) {
 							GuiComponent.blit(CurrentScreenHandler.getPoseStack(), 0, 0, 1.0F, 1.0F, s.width + 1, s.height + 1, s.width + 1, s.height + 1);
 						} else {
@@ -1352,7 +1316,6 @@ public class MenuHandlerBase extends GuiComponent {
 								GuiComponent.blit(CurrentScreenHandler.getPoseStack(), screenCenterX - (wfinal / 2), 0, 1.0F, 1.0F, wfinal + 1, s.height + 1, wfinal + 1, s.height + 1);
 							}
 						}
-						//---------------------
 					} else {
 						int w = this.backgroundTexture.getWidth();
 						int h = this.backgroundTexture.getHeight();
@@ -1415,7 +1378,6 @@ public class MenuHandlerBase extends GuiComponent {
 					this.panoramacube.render();
 
 				} else if (this.slideshow != null) {
-					//TODO übernehmen (ganzen teil)
 					int sw = this.slideshow.width;
 					int sh = this.slideshow.height;
 					int sx = this.slideshow.x;
@@ -1447,7 +1409,6 @@ public class MenuHandlerBase extends GuiComponent {
 					this.slideshow.height = sh;
 					this.slideshow.x = sx;
 					this.slideshow.y = sy;
-					//----------------------------
 				}
 			}
 
@@ -1470,7 +1431,6 @@ public class MenuHandlerBase extends GuiComponent {
 		}
 	}
 
-	//TODO übernehmen
 	@SubscribeEvent
 	public void onButtonClickSound(PlayWidgetClickSoundEvent.Pre e) {
 		
@@ -1499,7 +1459,6 @@ public class MenuHandlerBase extends GuiComponent {
 
 	}
 
-	//TODO übernehmen
 	@SubscribeEvent
 	public void onButtonRenderBackground(RenderWidgetBackgroundEvent.Pre e) {
 		if (this.shouldCustomize(Minecraft.getInstance().screen)) {
@@ -1564,7 +1523,6 @@ public class MenuHandlerBase extends GuiComponent {
 		}
 	}
 
-	//TODO übernehmen
 	protected boolean renderCustomButtomBackground(RenderWidgetBackgroundEvent e, String background) {
 		AbstractWidget w = e.getWidget();
 		PoseStack matrix = e.getPoseStack();
@@ -1610,7 +1568,6 @@ public class MenuHandlerBase extends GuiComponent {
 		return false;
 	}
 
-	//TODO übernehmen
 	protected void renderBackgroundAnimation(RenderWidgetBackgroundEvent e, IAnimationRenderer ani) {
 		AbstractWidget w = e.getWidget();
 		ButtonCustomizationContainer c = this.vanillaButtonCustomizations.get(w);
@@ -1651,7 +1608,6 @@ public class MenuHandlerBase extends GuiComponent {
 		}
 	}
 
-	//TODO übernehmen
 	protected ButtonCustomizationContainer getContainerForVanillaButton(AbstractWidget w) {
 		if (!this.vanillaButtonCustomizations.containsKey(w)) {
 			ButtonCustomizationContainer c = new ButtonCustomizationContainer();
@@ -1661,7 +1617,6 @@ public class MenuHandlerBase extends GuiComponent {
 		return this.vanillaButtonCustomizations.get(w);
 	}
 
-	//TODO übernehmen
 	protected boolean visibilityRequirementsMet(AbstractWidget b) {
 		VisibilityRequirementContainer c = this.vanillaButtonVisibilityRequirementContainers.get(b);
 		if (c != null) {
@@ -1842,7 +1797,6 @@ public class MenuHandlerBase extends GuiComponent {
 		
 	}
 
-	//TODO übernehmen 2.3.2
 	public boolean isVanillaButtonDelayed(AbstractWidget w) {
 		for (ButtonData d : this.delayAppearanceVanilla.keySet()) {
 			if (d.getButton() == w) {
@@ -1852,7 +1806,6 @@ public class MenuHandlerBase extends GuiComponent {
 		return false;
 	}
 
-	//TODO übernehmen 2.3.2
 	public boolean isVanillaButtonHidden(AbstractWidget w) {
 		for (ButtonData d : this.hidden) {
 			if (d.getButton() == w) {
@@ -1865,10 +1818,8 @@ public class MenuHandlerBase extends GuiComponent {
 	public static class SharedLayoutProperties {
 		
 		public boolean scaled = false;
-		//TODO übernehmen
 		public int autoScaleBaseWidth = 0;
 		public int autoScaleBaseHeight = 0;
-		//---------------------
 		public boolean backgroundTextureSet = false;
 		public boolean openAudioSet = false;
 		public boolean closeAudioSet = false;
@@ -1876,7 +1827,6 @@ public class MenuHandlerBase extends GuiComponent {
 		
 	}
 
-	//TODO übernehmen
 	public static class ButtonCustomizationContainer {
 
 		public String normalBackground = null;

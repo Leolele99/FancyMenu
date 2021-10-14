@@ -82,7 +82,6 @@ public abstract class LayoutElement extends GuiComponent {
 	private static boolean shiftListener = false;
 	
 	private final boolean destroyable;
-	//TODO übernehmen
 	public boolean enableVisibilityRequirements = true;
 
 	public final String objectId = UUID.randomUUID().toString();
@@ -94,7 +93,6 @@ public abstract class LayoutElement extends GuiComponent {
 	protected static final long vResizeCursor = GLFW.glfwCreateStandardCursor(GLFW.GLFW_VRESIZE_CURSOR);
 	protected static final long normalCursor = GLFW.glfwCreateStandardCursor(GLFW.GLFW_ARROW_CURSOR);
 
-	//TODO übernehmen
 	public LayoutElement(@Nonnull CustomizationItemBase object, boolean destroyable, @Nonnull LayoutEditorScreen handler, boolean doInit) {
 		this.handler = handler;
 		this.object = object;
@@ -120,13 +118,11 @@ public abstract class LayoutElement extends GuiComponent {
 			shiftListener = true;
 		}
 
-		//TODO übernehmen
 		if (doInit) {
 			this.init();
 		}
 	}
 
-	//TODO übernehmen
 	public LayoutElement(@Nonnull CustomizationItemBase object, boolean destroyable, @Nonnull LayoutEditorScreen handler) {
 		this(object, destroyable, handler, true);
 	}
@@ -136,7 +132,6 @@ public abstract class LayoutElement extends GuiComponent {
 		this.rightclickMenu = new FMContextMenu();
 		this.rightclickMenu.setAlwaysOnTop(true);
 
-		//TODO übernehmen
 		/** COPY ELEMENT ID **/
 		AdvancedButton copyIdButton = new AdvancedButton(0, 0, 0, 0, Locals.localize("fancymenu.helper.editor.items.copyid"), true, (press) -> {
 			if (!(this instanceof LayoutVanillaButton)) {
@@ -313,7 +308,6 @@ public abstract class LayoutElement extends GuiComponent {
 			this.rightclickMenu.addContent(moveDownButton);
 		}
 
-		//TODO übernehmen
 		/** VISIBILITY REQUIREMENTS **/
 		AdvancedButton visibilityRequirementsButton = new AdvancedButton(0, 0, 0, 0, Locals.localize("fancymenu.helper.editor.items.visibilityrequirements"), (press) -> {
 			PopupHandler.displayPopup(new VisibilityRequirementsPopup(this.object));
@@ -471,7 +465,6 @@ public abstract class LayoutElement extends GuiComponent {
 
 	}
 
-	//TODO übernehmen
 	protected void setOrientation(String pos) {
 		this.handler.history.saveSnapshot(this.handler.history.createSnapshot());
 
@@ -597,12 +590,10 @@ public abstract class LayoutElement extends GuiComponent {
 		try {
 			if (this.stretchX) {
 				this.object.posX = 0;
-				//TODO übernehmen
 				this.object.setWidth(Minecraft.getInstance().screen.width);
 			}
 			if (this.stretchY) {
 				this.object.posY = 0;
-				//TODO übernehmen
 				this.object.setHeight(Minecraft.getInstance().screen.height);
 			}
 			if (this.stretchX && !this.stretchY) {
@@ -738,7 +729,6 @@ public abstract class LayoutElement extends GuiComponent {
 		}
 
 		if (!MouseInput.isLeftMouseDown()) {
-			//TODO übernehmen
 			if (((this.startWidth != this.object.getWidth()) || (this.startHeight != this.object.getHeight())) && this.resizing) {
 				if (this.cachedSnapshot != null) {
 					this.handler.history.saveSnapshot(this.cachedSnapshot);
@@ -747,10 +737,8 @@ public abstract class LayoutElement extends GuiComponent {
 			
 			this.startX = this.object.posX;
 			this.startY = this.object.posY;
-			//TODO übernehmen
 			this.startWidth = this.object.getWidth();
 			this.startHeight = this.object.getHeight();
-			//--------------
 			this.resizing = false;
 		}
 
@@ -786,7 +774,6 @@ public abstract class LayoutElement extends GuiComponent {
 	}
 	
 	protected void renderBorder(PoseStack matrix, int mouseX, int mouseY) {
-		//TODO übernehmen
 		//horizontal line top
 		GuiComponent.fill(matrix, this.object.getPosX(handler), this.object.getPosY(handler), this.object.getPosX(handler) + this.object.getWidth(), this.object.getPosY(handler) + 1, Color.BLUE.getRGB());
 		//horizontal line bottom
@@ -795,12 +782,10 @@ public abstract class LayoutElement extends GuiComponent {
 		GuiComponent.fill(matrix, this.object.getPosX(handler), this.object.getPosY(handler), this.object.getPosX(handler) + 1, this.object.getPosY(handler) + this.object.getHeight(), Color.BLUE.getRGB());
 		//vertical line right
 		GuiComponent.fill(matrix, this.object.getPosX(handler) + this.object.getWidth() - 1, this.object.getPosY(handler), this.object.getPosX(handler) + this.object.getWidth(), this.object.getPosY(handler) + this.object.getHeight(), Color.BLUE.getRGB());
-		//--------------------------------
 
 		int w = 4;
 		int h = 4;
 
-		//TODO übernehmen
 		int yHorizontal = this.object.getPosY(handler) + (this.object.getHeight() / 2) - (h / 2);
 		int xHorizontalLeft = this.object.getPosX(handler) - (w / 2);
 		int xHorizontalRight = this.object.getPosX(handler) + this.object.getWidth() - (w / 2);
@@ -808,7 +793,6 @@ public abstract class LayoutElement extends GuiComponent {
 		int xVertical = this.object.getPosX(handler) + (this.object.getWidth() / 2) - (w / 2);
 		int yVerticalTop = this.object.getPosY(handler) - (h / 2);
 		int yVerticalBottom = this.object.getPosY(handler) + this.object.getHeight() - (h / 2);
-		//--------------------------------
 
 		if (!this.stretchX) {
 			//grabber left
@@ -856,7 +840,6 @@ public abstract class LayoutElement extends GuiComponent {
 			this.activeGrabber = -1;
 		}
 
-		//TODO übernehmen
 		//Render pos and size values
 		RenderUtils.setScale(matrix, 0.5F);
 		GuiComponent.drawString(matrix, Minecraft.getInstance().font, Locals.localize("helper.creator.items.border.orientation") + ": " + this.object.orientation, this.object.getPosX(handler)*2, (this.object.getPosY(handler)*2) - 26, Color.WHITE.getRGB());
@@ -866,10 +849,8 @@ public abstract class LayoutElement extends GuiComponent {
 		GuiComponent.drawString(matrix, Minecraft.getInstance().font, Locals.localize("helper.creator.items.border.posy") + ": " + this.object.getPosY(handler), ((this.object.getPosX(handler) + this.object.getWidth())*2)+3, ((this.object.getPosY(handler) + this.object.getHeight())*2) - 14, Color.WHITE.getRGB());
 		GuiComponent.drawString(matrix, Minecraft.getInstance().font, Locals.localize("helper.creator.items.border.height") + ": " + this.object.getHeight(), ((this.object.getPosX(handler) + this.object.getWidth())*2)+3, ((this.object.getPosY(handler) + this.object.getHeight())*2) - 5, Color.WHITE.getRGB());
 		RenderUtils.postScale(matrix);
-		//--------------------------
 	}
 
-	//TODO übernehmen
 	protected void renderHighlightBorder(PoseStack matrix) {
 		Color c = new Color(0, 200, 255, 255);
 		
@@ -929,7 +910,6 @@ public abstract class LayoutElement extends GuiComponent {
 			diffY = Math.negateExact(this.startY - mouseY);
 		}
 
-		//TODO übernehmen (bis runter)
 		if (!this.stretchX) {
 			if (g == 0) { //left
 				int w = this.startWidth + this.getOpponentInt(diffX);
@@ -985,7 +965,6 @@ public abstract class LayoutElement extends GuiComponent {
 				}
 			}
 		}
-		//-------------------------
 	}
 	
 	private int getOpponentInt(int i) {
@@ -996,7 +975,6 @@ public abstract class LayoutElement extends GuiComponent {
 		}
 	}
 
-	//TODO übernehmen
 	protected void updateHovered(int mouseX, int mouseY) {
 		if ((mouseX >= this.object.getPosX(handler)) && (mouseX <= this.object.getPosX(handler) + this.object.getWidth()) && (mouseY >= this.object.getPosY(handler)) && mouseY <= this.object.getPosY(handler) + this.object.getHeight()) {
 			this.hovered = true;
@@ -1053,22 +1031,18 @@ public abstract class LayoutElement extends GuiComponent {
 		return this.object.getPosY(handler);
 	}
 
-	//TODO übernehmen
 	public void setWidth(int width) {
 		this.object.setWidth(width);
 	}
 
-	//TODO übernehmen
 	public void setHeight(int height) {
 		this.object.setHeight(height);
 	}
 
-	//TODO übernehmen
 	public int getWidth() {
 		return this.object.getWidth();
 	}
 
-	//TODO übernehmen
 	public int getHeight() {
 		return this.object.getHeight();
 	}
@@ -1110,7 +1084,6 @@ public abstract class LayoutElement extends GuiComponent {
 
 	public abstract List<PropertiesSection> getProperties();
 
-	//TODO übernehmen
 	protected void addVisibilityPropertiesTo(PropertiesSection sec) {
 
 		VisibilityRequirementContainer c = this.object.visibilityRequirementContainer;

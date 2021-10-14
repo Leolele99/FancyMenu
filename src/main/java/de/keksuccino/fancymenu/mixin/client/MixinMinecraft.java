@@ -67,7 +67,6 @@ public class MixinMinecraft {
 
 	private static void preloadAnimations() {
 
-		//TODO übernehmen NEU
 		System.out.println("[FANCYMENU] Updating animation sizes..");
 		AnimationHandler.setupAnimationSizes();
 

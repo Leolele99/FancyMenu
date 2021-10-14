@@ -18,7 +18,6 @@ public class ResourcePacksScreenInstance extends GuiInstance {
 		super(con, paras, gui);
 	}
 
-	//TODO übernehmen 1.17
 	@Override
 	protected void createInstance() {
 		try {

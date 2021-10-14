@@ -1,4 +1,3 @@
-//TODO übernehmen
 package de.keksuccino.fancymenu.menu.fancy.item.visibilityrequirements;
 
 import de.keksuccino.fancymenu.menu.button.ButtonCache;
@@ -16,10 +15,8 @@ import java.util.List;
 
 public class VisibilityRequirementContainer {
 
-    //TODO übernehmen 2.3.2
     public boolean forceShow = false;
     public boolean forceHide = false;
-    //-------------------------
 
     //Visibility Requirements
     //VR show-if values are always the requirement that must be met to show the element.
@@ -381,14 +378,12 @@ public class VisibilityRequirementContainer {
 
     public boolean isVisible() {
 
-        //TODO übernehmen 2.3.2
         if (forceShow) {
             return true;
         }
         if (forceHide) {
             return false;
         }
-        //--------------------
 
         //VR: Is Singleplayer
         if (this.vrCheckForSingleplayer) {

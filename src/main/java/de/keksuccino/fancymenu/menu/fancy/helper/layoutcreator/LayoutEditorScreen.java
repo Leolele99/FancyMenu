@@ -88,24 +88,11 @@ public class LayoutEditorScreen extends Screen {
 	protected List<LayoutElement> newContentPaste = new ArrayList<LayoutElement>();
 	public List<LayoutElement> deleteContentQueue = new ArrayList<LayoutElement>();
 	protected List<LayoutElement> vanillaButtonContent = new ArrayList<LayoutElement>();
-	//TODO übernehmen
-//	protected List<LayoutVanillaButton> hidden = new ArrayList<LayoutVanillaButton>();
 	protected Map<String, Boolean> audio = new HashMap<String, Boolean>();
-	//TODO übernehmen
-//	public Map<Long, String> vanillaButtonNames = new HashMap<Long, String>();
-//	public Map<Long, List<String>> vanillaButtonTextures = new HashMap<Long, List<String>>();
-//	public Map<Long, Integer> vanillaButtonClicks = new HashMap<Long, Integer>();
-//	public Map<Long, String> vanillaHoverLabels = new HashMap<Long, String>();
-//	public Map<Long, String> vanillaClickSounds = new HashMap<Long, String>();
-//	public Map<Long, String> vanillaHoverSounds = new HashMap<Long, String>();
-	//TODO übernehmen
 	public Map<Long, MenuHandlerBase.ButtonCustomizationContainer> vanillaButtonCustomizationContainers = new HashMap<Long, MenuHandlerBase.ButtonCustomizationContainer>();
-	//------------------------
 	public Map<Long, Float> vanillaDelayAppearance = new HashMap<Long, Float>();
 	public Map<Long, Boolean> vanillaDelayAppearanceFirstTime = new HashMap<Long, Boolean>();
 	public Map<Long, Float> vanillaFadeIn = new HashMap<Long, Float>();
-	//TODO übernehmen
-//	public Map<Long, String> vanillaDescriptions = new HashMap<Long, String>();
 	protected List<LayoutElement> focusedObjects = new ArrayList<LayoutElement>();
 	protected List<LayoutElement> focusedObjectsCache = new ArrayList<LayoutElement>();
 	
@@ -126,7 +113,6 @@ public class LayoutEditorScreen extends Screen {
 	protected double panoPos = 0.0;
 	protected boolean panoMoveBack = false;
 	protected boolean panoStop = false;
-	//TODO übernehmen
 	protected boolean keepBackgroundAspectRatio = false;
 
 	protected String openAudio;
@@ -148,10 +134,8 @@ public class LayoutEditorScreen extends Screen {
 	protected String randomGroup = "1";
 	protected boolean randomOnlyFirstTime = false;
 
-	//TODO übernehmen
 	protected int autoScalingWidth = 0;
 	protected int autoScalingHeight = 0;
-	//-----------------
 
 	protected int scale = 0;
 
@@ -195,7 +179,6 @@ public class LayoutEditorScreen extends Screen {
 		this.propertiesRightclickMenu.setAutoclose(false);
 		this.propertiesRightclickMenu.setAlwaysOnTop(true);
 
-		//TODO übernehmen
 		if (this.scale > 0) {
 			Minecraft.getInstance().getWindow().setGuiScale(this.scale);
 		} else {
@@ -203,9 +186,7 @@ public class LayoutEditorScreen extends Screen {
 		}
 		this.height = Minecraft.getInstance().getWindow().getGuiScaledHeight();
 		this.width = Minecraft.getInstance().getWindow().getGuiScaledWidth();
-		//-----------------
 
-		//TODO übernehmen
 		if ((this.autoScalingWidth != 0) && (this.autoScalingHeight != 0)) {
 			Window m = Minecraft.getInstance().getWindow();
 			double guiWidth = this.width * m.getGuiScale();
@@ -330,7 +311,6 @@ public class LayoutEditorScreen extends Screen {
 			l.add(ps);
 		}
 
-		//TODO übernehmen
 		if ((this.autoScalingWidth != 0) && (this.autoScalingHeight != 0)) {
 			PropertiesSection ps = new PropertiesSection("customization");
 			ps.addEntry("action", "autoscale");
@@ -361,7 +341,6 @@ public class LayoutEditorScreen extends Screen {
 			l.add(s);
 		}
 
-		//TODO übernehmen
 		//Background Options Section
 		PropertiesSection s = new PropertiesSection("customization");
 		s.addEntry("action", "backgroundoptions");
@@ -378,7 +357,6 @@ public class LayoutEditorScreen extends Screen {
 	 * Updates the LayoutObjects shown in the CreatorScreen.<br>
 	 * The positions of all UNMODIFIED vanilla buttons will be updated to keep them at the correct position when the screen is getting resized.
 	 */
-	//TODO übernehmen
 	protected void updateContent() {
 		List<LayoutElement> l = new ArrayList<LayoutElement>();
 		for (LayoutElement o : this.content) {
@@ -407,12 +385,6 @@ public class LayoutEditorScreen extends Screen {
 					this.vanillaButtonCustomizationContainers.put(b.getId(), cc);
 				}
 				LayoutVanillaButton v = new LayoutVanillaButton(this.vanillaButtonCustomizationContainers.get(b.getId()), b, this);
-//				if (this.vanillaButtonNames.containsKey(b.getId())) {
-//					v.object.value = this.vanillaButtonNames.get(b.getId());
-//				}
-//				if (this.vanillaButtonClicks.containsKey(b.getId())) {
-//					v.clicks = LayoutEditorScreen.this.vanillaButtonClicks.get(b.getId());
-//				}
 				if (this.vanillaDelayAppearance.containsKey(b.getId())) {
 					v.object.delayAppearance = true;
 					v.object.delayAppearanceSec = this.vanillaDelayAppearance.get(b.getId());
@@ -424,24 +396,6 @@ public class LayoutEditorScreen extends Screen {
 						v.object.fadeInSpeed = this.vanillaFadeIn.get(b.getId());
 					}
 				}
-//				if (this.vanillaHoverLabels.containsKey(b.getId())) {
-//					v.hoverLabel = this.vanillaHoverLabels.get(b.getId());
-//				}
-//				if (this.vanillaHoverSounds.containsKey(b.getId())) {
-//					v.hoverSound = this.vanillaHoverSounds.get(b.getId());
-//				}
-//				if (this.vanillaButtonCustomizationContainers.containsKey(b.getId())) {
-//					v.clicksound = this.vanillaButtonCustomizationContainers.get(b.getId()).clickSound;
-//				}
-//				if (this.vanillaButtonTextures.containsKey(b.getId())) {
-//					List<String> l2 = this.vanillaButtonTextures.get(b.getId());
-//					v.backNormal = l2.get(0);
-//					v.backHovered = l2.get(1);
-//					((LayoutButtonDummyCustomizationItem)v.object).setTexture(TextureHandler.getResource(l2.get(0)).getResourceLocation());
-//				}
-//				if (this.vanillaDescriptions.containsKey(b.getId())) {
-//					v.description = this.vanillaDescriptions.get(b.getId());
-//				}
 
 				l.add(v);
 			}
@@ -472,7 +426,6 @@ public class LayoutEditorScreen extends Screen {
 		return false;
 	}
 
-	//TODO übernehmen
 	public boolean isHidden(LayoutElement b) {
 		if (b instanceof LayoutVanillaButton) {
 			return ((LayoutVanillaButton) b).customizationContainer.isButtonHidden;
@@ -480,7 +433,6 @@ public class LayoutEditorScreen extends Screen {
 		return false;
 	}
 
-	//TODO übernehmen
 	public List<LayoutVanillaButton> getHiddenButtons() {
 		List<LayoutVanillaButton> l = new ArrayList<LayoutVanillaButton>();
 		for (LayoutElement e : this.vanillaButtonContent) {
@@ -499,85 +451,6 @@ public class LayoutEditorScreen extends Screen {
 		}
 	}
 
-	//TODO übernehmen
-//	public void setVanillaButtonName(LayoutVanillaButton button, String text) {
-//		if ((this.vanillaButtonNames.get(button.button.getId()) == null) || !(this.vanillaButtonNames.get(button.button.getId()).equals(text))) {
-//			this.history.saveSnapshot(this.history.createSnapshot());
-//		}
-//
-//		this.vanillaButtonNames.put(button.button.getId(), text);
-//		button.object.value = text;
-//	}
-
-	//TODO übernehmen
-//	public void setVanillaTexture(LayoutVanillaButton button, String backNormal, String backHover) {
-//		if ((backNormal != null) && (backHover != null)) {
-//			List<String> l = new ArrayList<String>();
-//			l.add(backNormal);
-//			l.add(backHover);
-//
-//			this.vanillaButtonTextures.put(button.button.getId(), l);
-//		} else {
-//			if (this.vanillaButtonTextures.containsKey(button.button.getId())) {
-//				this.vanillaButtonTextures.remove(button.button.getId());
-//			}
-//		}
-//	}
-
-	//TODO übernehmen
-//	public void setVanillaClicks(LayoutVanillaButton button, int clicks) {
-//		if (clicks > 0) {
-//			this.vanillaButtonClicks.put(button.button.getId(), clicks);
-//		} else {
-//			if (this.vanillaButtonClicks.containsKey(button.button.getId())) {
-//				this.vanillaButtonClicks.remove(button.button.getId());
-//			}
-//		}
-//	}
-
-	//TODO übernehmen
-//	public void setVanillaDescription(LayoutVanillaButton button, String desc) {
-//		if (desc == null) {
-//			this.vanillaDescriptions.remove(button.button.getId());
-//		} else {
-//			this.vanillaDescriptions.put(button.button.getId(), desc);
-//		}
-//	}
-
-	//TODO übernehmen
-//	public void setVanillaHoverLabel(LayoutVanillaButton button, String label) {
-//		if (label != null) {
-//			this.vanillaHoverLabels.put(button.button.getId(), label);
-//		} else {
-//			if (this.vanillaHoverLabels.containsKey(button.button.getId())) {
-//				this.vanillaHoverLabels.remove(button.button.getId());
-//			}
-//		}
-//	}
-
-	//TODO übernehmen
-//	public void setVanillaHoverSound(LayoutVanillaButton button, String sound) {
-//		if (sound != null) {
-//			this.vanillaHoverSounds.put(button.button.getId(), sound);
-//		} else {
-//			if (this.vanillaHoverSounds.containsKey(button.button.getId())) {
-//				this.vanillaHoverSounds.remove(button.button.getId());
-//			}
-//		}
-//	}
-
-	//TODO übernehmen
-//	public void setVanillaClickSound(LayoutVanillaButton button, String sound) {
-//		if (sound != null) {
-//			this.vanillaClickSounds.put(button.button.getId(), sound);
-//		} else {
-//			if (this.vanillaClickSounds.containsKey(button.button.getId())) {
-//				this.vanillaClickSounds.remove(button.button.getId());
-//			}
-//		}
-//	}
-
-	//TODO übernehmen
 	public void hideVanillaButton(LayoutVanillaButton b) {
 		if (!b.customizationContainer.isButtonHidden && this.content.contains(b)) {
 			this.history.saveSnapshot(this.history.createSnapshot());
@@ -588,7 +461,6 @@ public class LayoutEditorScreen extends Screen {
 		}
 	}
 
-	//TODO übernehmen
 	public void showVanillaButton(LayoutVanillaButton b) {
 		if (b.customizationContainer.isButtonHidden) {
 			this.history.saveSnapshot(this.history.createSnapshot());
@@ -651,14 +523,12 @@ public class LayoutEditorScreen extends Screen {
 
 		this.renderCreatorBackground(matrix);
 
-		//TODO übernehmen
 		this.drawGrid(matrix);
 
 		if (this.renderorder.equalsIgnoreCase("foreground")) {
 			this.renderVanillaButtons(matrix, mouseX, mouseY);
 		}
 		//Renders all layout objects. The focused object is always rendered on top of all other objects.
-		//TODO übernehmen
 		for (LayoutElement l : this.content) {
 			if (!(l instanceof LayoutVanillaButton)) {
 				if (!this.isFocused(l)) {
@@ -767,7 +637,6 @@ public class LayoutEditorScreen extends Screen {
 
 	}
 
-	//TODO übernehmen
 	protected void drawGrid(PoseStack matrix) {
 		if (FancyMenu.config.getOrDefault("showgrid", false)) {
 			Color c = new Color(255, 255, 255, 100);
@@ -824,7 +693,6 @@ public class LayoutEditorScreen extends Screen {
 			RenderUtils.bindTexture(this.backgroundTexture.getResourceLocation());
 			
 			if (!this.panorama) {
-				//TODO übernehmen (kompletten teil; if + else)
 				if (!this.keepBackgroundAspectRatio) {
 					blit(CurrentScreenHandler.getPoseStack(), 0, 0, 1.0F, 1.0F, this.width + 1, this.height + 1, this.width + 1, this.height + 1);
 				} else {
@@ -839,7 +707,6 @@ public class LayoutEditorScreen extends Screen {
 						blit(CurrentScreenHandler.getPoseStack(), screenCenterX - (wfinal / 2), 0, 1.0F, 1.0F, wfinal + 1, this.height + 1, wfinal + 1, this.height + 1);
 					}
 				}
-				//---------------------
 			} else {
 				int w = this.backgroundTexture.getWidth();
 				int h = this.backgroundTexture.getHeight();
@@ -897,7 +764,6 @@ public class LayoutEditorScreen extends Screen {
 		}
 		RenderSystem.disableBlend();
 
-		//TODO übernehmen
 		if (this.backgroundAnimation != null) {
 			boolean b = this.backgroundAnimation.isStretchedToStreensize();
 			int wOri = this.backgroundAnimation.getWidth();
@@ -926,13 +792,11 @@ public class LayoutEditorScreen extends Screen {
 			this.backgroundAnimation.setPosY(yOri);
 			this.backgroundAnimation.setStretchImageToScreensize(b);
 		}
-		//----------------------
 
 		if (this.backgroundPanorama != null) {
 			this.backgroundPanorama.render();
 		}
 
-		//TODO übernehmen
 		if (this.backgroundSlideshow != null) {
 			int sw = this.backgroundSlideshow.width;
 			int sh = this.backgroundSlideshow.height;
@@ -1123,7 +987,6 @@ public class LayoutEditorScreen extends Screen {
 		return movedBehind;
 	}
 
-	//TODO übernehmen
 	protected void setButtonTexturesForFocusedObjects() {
 		MenuHandlerBase.ButtonCustomizationContainer cc = new MenuHandlerBase.ButtonCustomizationContainer();
 		ButtonBackgroundPopup pop = new ButtonBackgroundPopup(this, cc, () -> {
@@ -1224,10 +1087,8 @@ public class LayoutEditorScreen extends Screen {
 			int w = SlideshowHandler.getSlideshow(name).width;
 			int h = SlideshowHandler.getSlideshow(name).height;
 			double ratio = (double) w / (double) h;
-			//TODO übernehmen
 			i.setHeight(100);
 			i.setWidth((int)(i.getHeight() * ratio));
-			//---------------------
 			
 			this.addContent(new LayoutSlideshow(i, this));
 
@@ -1322,10 +1183,8 @@ public class LayoutEditorScreen extends Screen {
 			int w = AnimationHandler.getAnimation(name).getWidth();
 			int h = AnimationHandler.getAnimation(name).getHeight();
 			double ratio = (double) w / (double) h;
-			//TODO übernehmen
 			i.setHeight(100);
 			i.setWidth((int)(i.getHeight() * ratio));
-			//-----------------
 			AnimationHandler.getAnimation(name).resetAnimation();
 			this.addContent(new LayoutAnimation(i, this));
 
@@ -1344,7 +1203,6 @@ public class LayoutEditorScreen extends Screen {
 		if (Minecraft.getInstance().font.width(label) + 10 > w) {
 			w = Minecraft.getInstance().font.width(label) + 10;
 		}
-		//TODO übernehmen
 		LayoutButton b = new LayoutButton(new MenuHandlerBase.ButtonCustomizationContainer(), w, 20, label, null, this);
 		b.object.posY = (int)(this.ui.bar.getHeight() * UIBase.getUIScale());
 		this.addContent(b);
@@ -1619,11 +1477,9 @@ public class LayoutEditorScreen extends Screen {
 
 			//Init dummy preloaded editor to use it's customization action serializer for building the copied elements
 			PreloadedLayoutEditorScreen pe = new PreloadedLayoutEditorScreen(new CustomGuiBase("", "", false, null, null), l);
-			//TODO übernehmen
 			pe.init();
 
 			for (LayoutElement e : pe.content) {
-				//TODO übernehmen
 				e.object.setActionId(MenuCustomization.generateRandomActionId());
 				e.handler = this;
 				//Change the element position a bit to better see that the element was successfully pasted
@@ -1690,7 +1546,6 @@ public class LayoutEditorScreen extends Screen {
 				}
 			}
 
-			//TODO übernehmen
 			//CTRL + G
 			if (d.keycode == 71) {
 				if (KeyboardHandler.isCtrlPressed()) {

@@ -29,27 +29,20 @@ public class ButtonCustomizationItem extends CustomizationItemBase {
 	private boolean onlySingleplayer = false;
 	private boolean onlyOutgame = false;
 
-	//TODO übernehmen
 	public String hoverLabelRaw;
 	public String labelRaw;
-	//----------
 	
 	public ButtonCustomizationItem(PropertiesSection item) {
 		super(item);
 		
 		if ((this.action != null) && this.action.equalsIgnoreCase("addbutton")) {
-			//TODO übernehmen
 			this.labelRaw = item.getEntryValue("label");
 			if (this.labelRaw == null) {
 				this.labelRaw = "";
 			}
-			//-------------
 			
 			String buttonaction = item.getEntryValue("buttonaction");
 			String actionvalue = item.getEntryValue("value");
-			//TODO übernehmen
-//			String backNormal = item.getEntryValue("backgroundnormal");
-//			String backHover = item.getEntryValue("backgroundhovered");
 
 			if (buttonaction == null) {
 				return;
@@ -72,7 +65,6 @@ public class ButtonCustomizationItem extends CustomizationItemBase {
 				}
 			}
 
-			//TODO übernehmen
 			this.hoverLabelRaw = item.getEntryValue("hoverlabel");
 
 			String onlyX = item.getEntryValue("onlydisplayin");
@@ -89,7 +81,6 @@ public class ButtonCustomizationItem extends CustomizationItemBase {
 			}
 
 			String finalAction = actionvalue;
-			//TODO übernehmen
 			this.button = new AdvancedButton(0, 0, this.getWidth(), this.getHeight(), this.value, true, (press) -> {
 				ButtonScriptEngine.runButtonAction(buttonaction, finalAction);
 			});
@@ -110,16 +101,13 @@ public class ButtonCustomizationItem extends CustomizationItemBase {
 				this.button.setDescription(StringUtils.splitLines(DynamicValueHelper.convertFromRaw(desc), "%n%"));
 			}
 
-			//TODO übernehmen
 			String backNormal = item.getEntryValue("backgroundnormal");
 			String backHover = item.getEntryValue("backgroundhovered");
 			String loopBackAnimations = item.getEntryValue("loopbackgroundanimations");
 			String restartBackAnimationsOnHover = item.getEntryValue("restartbackgroundanimations");
 			String backAnimationNormal = item.getEntryValue("backgroundanimationnormal");
 			String backAnimationHover = item.getEntryValue("backgroundanimationhovered");
-			//----------------------
 
-			//TODO übernehmen
 			if (this.button != null) {
 				if ((loopBackAnimations != null) && loopBackAnimations.equalsIgnoreCase("false")) {
 					this.button.loopBackgroundAnimations = false;
@@ -169,7 +157,6 @@ public class ButtonCustomizationItem extends CustomizationItemBase {
 				}
 			}
 
-			//TODO übernehmen
 			this.updateValues();
 
 		}
@@ -180,7 +167,6 @@ public class ButtonCustomizationItem extends CustomizationItemBase {
 			return;
 		}
 
-		//TODO übernehmen
 		this.updateValues();
 
 		if (this.onlyOutgame && (Minecraft.getInstance().level != null)) {
@@ -220,7 +206,6 @@ public class ButtonCustomizationItem extends CustomizationItemBase {
 		this.button.render(matrix, MouseInput.getMouseX(), MouseInput.getMouseY(), Minecraft.getInstance().getFrameTime());
 	}
 
-	//TODO übernehmen
 	protected void updateValues() {
 
 		if (this.labelRaw != null) {
@@ -276,7 +261,6 @@ public class ButtonCustomizationItem extends CustomizationItemBase {
 			ori = 10;
 		}
 
-		//TODO übernehmen
 		String idRaw = "00" + ori + "" + Math.abs(this.posX) + "" + Math.abs(this.posY) + "" + Math.abs(this.getWidth());
 		long id = 0;
 		if (MathUtils.isLong(idRaw)) {

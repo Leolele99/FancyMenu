@@ -32,10 +32,8 @@ public class WebTextureCustomizationItem extends CustomizationItemBase {
 						this.texture = TextureHandler.getWebResource(this.value);
 
 						if ((this.texture == null) || !this.texture.isReady()) {
-							//TODO übernehmen
 							this.setWidth(100);
 							this.setHeight(100);
-							//------------------
 							return;
 						}
 						
@@ -43,7 +41,6 @@ public class WebTextureCustomizationItem extends CustomizationItemBase {
 						int h = this.texture.getHeight();
 						double ratio = (double) w / (double) h;
 
-						//TODO übernehmen
 						//Calculate missing width
 						if ((this.getWidth() < 0) && (this.getHeight() >= 0)) {
 							this.setWidth((int)(this.getHeight() * ratio));
@@ -52,7 +49,6 @@ public class WebTextureCustomizationItem extends CustomizationItemBase {
 						if ((this.getHeight() < 0) && (this.getWidth() >= 0)) {
 							this.setHeight((int)(this.getWidth() / ratio));
 						}
-						//-------------------
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -78,13 +74,11 @@ public class WebTextureCustomizationItem extends CustomizationItemBase {
 			
 			RenderSystem.enableBlend();
 			RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, this.opacity);
-			//TODO übernehmen
 			GuiComponent.blit(matrix, x, y, 0.0F, 0.0F, this.getWidth(), this.getHeight(), this.getWidth(), this.getHeight());
 			RenderSystem.disableBlend();
 		}
 	}
 
-	//TODO übernehmen
 	@Override
 	public boolean shouldRender() {
 		if ((this.getWidth() < 0) || (this.getHeight() < 0)) {

@@ -22,21 +22,15 @@ public class VanillaButtonCustomizationItem extends CustomizationItemBase {
 	private String normalLabel = "";
 	private boolean hovered = false;
 
-	//TODO übernehmen
 	public String hoverLabelRaw;
 	public String labelRaw;
 	protected boolean normalLabelCached = false;
-	//----------
-	//TODO übernehmen 2.3.2
 	public MenuHandlerBase handler;
 	public VisibilityRequirementContainer visibilityRequirements = null;
-	//---------------
 
-	//TODO übernehmen 2.3.2
 	public VanillaButtonCustomizationItem(PropertiesSection item, ButtonData parent, MenuHandlerBase handler) {
 		super(item);
 		this.parent = parent;
-		//TODO übernehmen 2.3.2
 		this.handler = handler;
 
 		if ((this.action != null) && (this.parent != null)) {
@@ -58,7 +52,6 @@ public class VanillaButtonCustomizationItem extends CustomizationItemBase {
 				}
 			}
 
-			//TODO übernehmen
 			if (this.action.equalsIgnoreCase("sethoverlabel")) {
 				this.hoverLabelRaw = item.getEntryValue("label");
 				if (this.parent != null) {
@@ -67,7 +60,6 @@ public class VanillaButtonCustomizationItem extends CustomizationItemBase {
 				this.updateValues();
 			}
 
-			//TODO übernehmen
 			if (this.action.equalsIgnoreCase("renamebutton") || this.action.equalsIgnoreCase("setbuttonlabel")) {
 				this.labelRaw = item.getEntryValue("value");
 				this.updateValues();
@@ -80,10 +72,8 @@ public class VanillaButtonCustomizationItem extends CustomizationItemBase {
 	public void render(PoseStack matrix, Screen menu) throws IOException {
 		if (this.parent != null) {
 
-			//TODO übernehmen
 			this.updateValues();
 
-			//TODO übernehmen 2.3.2
 			if (action.equalsIgnoreCase("vanilla_button_visibility_requirements")) {
 				if (this.visibilityRequirements != null) {
 					if (!this.handler.isVanillaButtonHidden(this.parent.getButton())) {
@@ -104,7 +94,6 @@ public class VanillaButtonCustomizationItem extends CustomizationItemBase {
 				}
 			}
 
-			//TODO übernehmen
 			if (this.action.equals("sethoverlabel")) {
 				if (this.value != null) {
 					if (this.parent.getButton().isHovered()) {
@@ -122,7 +111,6 @@ public class VanillaButtonCustomizationItem extends CustomizationItemBase {
 				}
 			}
 
-			//TODO übernehmen
 			if (this.action.equalsIgnoreCase("renamebutton") || this.action.equalsIgnoreCase("setbuttonlabel")) {
 				if (this.value != null) {
 					if (!this.parent.getButton().isHovered()) {
@@ -134,7 +122,6 @@ public class VanillaButtonCustomizationItem extends CustomizationItemBase {
 		}
 	}
 
-	//TODO übernehmen
 	protected void updateValues() {
 
 		if (this.action.equalsIgnoreCase("renamebutton") || this.action.equalsIgnoreCase("setbuttonlabel")) {

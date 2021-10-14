@@ -50,7 +50,6 @@ public class TextureCustomizationItem extends CustomizationItemBase {
 						
 						ratio = (double) w / (double) h;
 
-						//TODO übernehmen
 					    //Calculate missing width
 					    if ((this.getWidth() < 0) && (this.getHeight() >= 0)) {
 					    	this.setWidth((int)(this.getHeight() * ratio));
@@ -59,7 +58,6 @@ public class TextureCustomizationItem extends CustomizationItemBase {
 					    if ((this.getHeight() < 0) && (this.getWidth() >= 0)) {
 					    	this.setHeight((int)(this.getWidth() / ratio));
 					    }
-					    //-------------------
 						
 					} catch (Exception e) {
 						e.printStackTrace();
@@ -86,10 +84,8 @@ public class TextureCustomizationItem extends CustomizationItemBase {
 				
 				this.gif.setPosX(x);
 				this.gif.setPosY(y);
-				//TODO übernehmen
 				this.gif.setWidth(this.getWidth());
 				this.gif.setHeight(this.getHeight());
-				//----------------
 				this.gif.setOpacity(this.opacity);
 				
 				this.gif.render(matrix);
@@ -105,7 +101,6 @@ public class TextureCustomizationItem extends CustomizationItemBase {
 				
 				RenderUtils.bindTexture(this.texture.getResourceLocation());
 				RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, this.opacity);
-				//TODO übernehmen
 				GuiComponent.blit(matrix, x, y, 0.0F, 0.0F, this.getWidth(), this.getHeight(), this.getWidth(), this.getHeight());
 				RenderSystem.disableBlend();
 				
@@ -119,7 +114,6 @@ public class TextureCustomizationItem extends CustomizationItemBase {
 		if ((this.texture == null) && (this.gif == null)) {
 			return false;
 		}
-		//TODO übernehmen
 		if ((this.getWidth() < 0) || (this.getHeight() < 0)) {
 			return false;
 		}

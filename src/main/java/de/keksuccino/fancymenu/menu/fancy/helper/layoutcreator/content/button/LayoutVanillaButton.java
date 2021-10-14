@@ -29,19 +29,8 @@ import net.minecraft.client.Minecraft;
 public class LayoutVanillaButton extends LayoutElement {
 	
 	public final ButtonData button;
-	//TODO übernehmen
 	public final MenuHandlerBase.ButtonCustomizationContainer customizationContainer;
-	//TODO übernehmen
-//	public boolean hidden = false;
-//	public String backNormal = null;
-//	public String backHovered = null;
-//	public int clicks = 0;
-//	public String hoverLabel;
-//	public String hoverSound;
-//	public String clicksound = null;
-//	public String description = null;
 
-	//TODO übernehmen
 	public LayoutVanillaButton(MenuHandlerBase.ButtonCustomizationContainer customizationContainer, ButtonData button, LayoutEditorScreen handler) {
 		super(new LayoutButtonDummyCustomizationItem(customizationContainer, button.label, button.width, button.height, button.x, button.y), true, handler, false);
 		this.button = button;
@@ -66,10 +55,8 @@ public class LayoutVanillaButton extends LayoutElement {
 			this.object.orientation = "original";
 			this.object.posX = this.button.x;
 			this.object.posY = this.button.y;
-			//TODO übernehmen
 			this.object.setWidth(this.button.width);
 			this.object.setHeight(this.button.height);
-			//----------------
 			this.rightclickMenu.closeMenu();
 			this.handler.postRenderTasks.add(new Runnable() {
 				@Override
@@ -80,38 +67,14 @@ public class LayoutVanillaButton extends LayoutElement {
 		});
 		this.rightclickMenu.addContent(b0);
 
-		//TODO übernehmen (edit label nach weiter unten zu edit hoverlabel verschieben)
-//		AdvancedButton b2 = new AdvancedButton(0, 0, 0, 16, Locals.localize("helper.creator.items.button.editlabel"), (press) -> {
-//			FMTextInputPopup i = new DynamicValueInputPopup(new Color(0, 0, 0, 0), "§l" + Locals.localize("helper.creator.items.button.editlabel"), null, 240, (call) -> {
-//				if (call != null) {
-//					if ((this.customizationContainer.customButtonLabel == null) || (!this.customizationContainer.customButtonLabel.equals(call))) {
-//						this.handler.history.saveSnapshot(this.handler.history.createSnapshot());
-//					}
-//					this.customizationContainer.customButtonLabel = call;
-//				}
-//			});
-//			i.setText(StringUtils.convertFormatCodes(this.object.value, "§", "&"));
-//			PopupHandler.displayPopup(i);
-//		});
-//		this.rightclickMenu.addContent(b2);
-//
-//		AdvancedButton b3 = new AdvancedButton(0, 0, 0, 16, Locals.localize("helper.creator.items.button.resetlabel"), (press) -> {
-//			this.customizationContainer.customButtonLabel = null;
-//			this.rightclickMenu.closeMenu();
-//		});
-//		this.rightclickMenu.addContent(b3);
-
-		//TODO übernehmen
 		this.rightclickMenu.addSeparator();
 
-		//TODO übernehmen (dafür alte button texture settings weg)
 		AdvancedButton buttonBackgroundButton = new AdvancedButton(0, 0, 0, 0, Locals.localize("fancymenu.helper.editor.items.buttons.buttonbackground"), (press) -> {
 			ButtonBackgroundPopup pop = new ButtonBackgroundPopup(this.handler, this.customizationContainer);
 			PopupHandler.displayPopup(pop);
 		});
 		this.rightclickMenu.addContent(buttonBackgroundButton);
 
-		//TODO übernehmen
 		String loopAniLabel = Locals.localize("fancymenu.helper.editor.items.buttons.buttonbackground.loopanimation.on");
 		if (!this.customizationContainer.loopAnimation) {
 			loopAniLabel = Locals.localize("fancymenu.helper.editor.items.buttons.buttonbackground.loopanimation.off");
@@ -128,7 +91,6 @@ public class LayoutVanillaButton extends LayoutElement {
 		loopBackgroundAnimationButton.setDescription(StringUtils.splitLines(Locals.localize("fancymenu.helper.editor.items.buttons.buttonbackground.loopanimation.btn.desc"), "%n%"));
 		this.rightclickMenu.addContent(loopBackgroundAnimationButton);
 
-		//TODO übernehmen
 		String restartAniLabel = Locals.localize("fancymenu.helper.editor.items.buttons.buttonbackground.restartonhover.on");
 		if (!this.customizationContainer.restartAnimationOnHover) {
 			restartAniLabel = Locals.localize("fancymenu.helper.editor.items.buttons.buttonbackground.restartonhover.off");
@@ -145,10 +107,8 @@ public class LayoutVanillaButton extends LayoutElement {
 		restartAnimationOnHoverButton.setDescription(StringUtils.splitLines(Locals.localize("fancymenu.helper.editor.items.buttons.buttonbackground.restartonhover.btn.desc"), "%n%"));
 		this.rightclickMenu.addContent(restartAnimationOnHoverButton);
 
-		//TODO übernehmen
 		this.rightclickMenu.addSeparator();
 
-		//TODO übernehmen (von oben verschieben UND änderungen am Code übernehmen/ganzen Abschnitt kopieren)
 		AdvancedButton b2 = new AdvancedButton(0, 0, 0, 16, Locals.localize("helper.creator.items.button.editlabel"), (press) -> {
 			FMTextInputPopup i = new DynamicValueInputPopup(new Color(0, 0, 0, 0), "§l" + Locals.localize("helper.creator.items.button.editlabel"), null, 240, (call) -> {
 				if (call != null) {
@@ -163,7 +123,6 @@ public class LayoutVanillaButton extends LayoutElement {
 		});
 		this.rightclickMenu.addContent(b2);
 
-		//TODO übernehmen (von oben verschieben UND änderungen am Code übernehmen/ganzen Abschnitt kopieren)
 		AdvancedButton b3 = new AdvancedButton(0, 0, 0, 16, Locals.localize("helper.creator.items.button.resetlabel"), (press) -> {
 			if (this.customizationContainer.customButtonLabel != null) {
 				this.handler.history.saveSnapshot(this.handler.history.createSnapshot());
@@ -173,10 +132,8 @@ public class LayoutVanillaButton extends LayoutElement {
 		});
 		this.rightclickMenu.addContent(b3);
 
-		//TODO übernehmen
 		this.rightclickMenu.addSeparator();
 
-		//TODO übernehmen
 		AdvancedButton b5 = new AdvancedButton(0, 0, 0, 16, Locals.localize("helper.creator.items.button.hoverlabel"), (press) -> {
 			FMTextInputPopup ip = new DynamicValueInputPopup(new Color(0, 0, 0, 0), "§l" + Locals.localize("helper.creator.items.button.hoverlabel"), null, 240, (call) -> {
 				if (call != null) {
@@ -194,7 +151,6 @@ public class LayoutVanillaButton extends LayoutElement {
 		});
 		this.rightclickMenu.addContent(b5);
 
-		//TODO übernehmen
 		AdvancedButton b6 = new AdvancedButton(0, 0, 0, 16, Locals.localize("helper.creator.items.button.hoverlabel.reset"), (press) -> {
 			if (this.customizationContainer.hoverLabel != null) {
 				this.handler.history.saveSnapshot(this.handler.history.createSnapshot());
@@ -205,10 +161,8 @@ public class LayoutVanillaButton extends LayoutElement {
 		});
 		this.rightclickMenu.addContent(b6);
 
-		//TODO übernehmen
 		this.rightclickMenu.addSeparator();
 
-		//TODO übernehmen
 		AdvancedButton b7 = new AdvancedButton(0, 0, 0, 16, Locals.localize("helper.creator.items.button.hoversound"), (press) -> {
 			ChooseFilePopup cf = new ChooseFilePopup((call) -> {
 				if (call != null) {
@@ -240,17 +194,6 @@ public class LayoutVanillaButton extends LayoutElement {
 		});
 		this.rightclickMenu.addContent(b7);
 
-		//TODO übernehmen
-//		AdvancedButton b8 = new AdvancedButton(0, 0, 0, 16, Locals.localize("helper.creator.items.button.hoversound.reset"), (press) -> {
-//			this.handler.history.saveSnapshot(this.handler.history.createSnapshot());
-//
-//			this.hoverSound = null;
-//			this.handler.setVanillaHoverSound(this, null);
-//			this.rightclickMenu.closeMenu();
-//		});
-//		this.rightclickMenu.addContent(b8);
-
-		//TODO übernehmen
 		AdvancedButton b11 = new AdvancedButton(0, 0, 0, 16, Locals.localize("helper.creator.items.button.clicksound"), (press) -> {
 			ChooseFilePopup cf = new ChooseFilePopup((call) -> {
 				if (call != null) {
@@ -282,20 +225,8 @@ public class LayoutVanillaButton extends LayoutElement {
 		});
 		this.rightclickMenu.addContent(b11);
 
-		//TODO übernehmen
-//		AdvancedButton b12 = new AdvancedButton(0, 0, 0, 16, Locals.localize("helper.creator.items.button.clicksound.reset"), (press) -> {
-//			this.handler.history.saveSnapshot(this.handler.history.createSnapshot());
-//
-//			this.clicksound = null;
-//			this.handler.setVanillaClickSound(this, null);
-//			this.rightclickMenu.closeMenu();
-//		});
-//		this.rightclickMenu.addContent(b12);
-
-		//TODO übernehmen
 		this.rightclickMenu.addSeparator();
 
-		//TODO übernehmen
 		AdvancedButton b9 = new AdvancedButton(0, 0, 0, 16, Locals.localize("helper.creator.vanillabutton.autoclick"), (press) -> {
 			FMTextInputPopup pop = new FMTextInputPopup(new Color(0, 0, 0, 0), "§l" + Locals.localize("helper.creator.vanillabutton.autoclick.popup"), CharacterFilter.getIntegerCharacterFiler(), 240, (call) -> {
 				if (call != null) {
@@ -319,12 +250,10 @@ public class LayoutVanillaButton extends LayoutElement {
 		});
 		this.rightclickMenu.addContent(b9);
 
-		//TODO übernehmen
 		AdvancedButton b13 = new AdvancedButton(0, 0, 0, 16, Locals.localize("helper.creator.items.button.btndescription"), (press) -> {
 			FMTextInputPopup in = new DynamicValueInputPopup(new Color(0, 0, 0, 0), Locals.localize("helper.creator.items.button.btndescription"), null, 240, (call) -> {
 				if (call != null) {
 					if (!call.replace(" ", "").equals("")) {
-						//TODO übernehmen 2.3.2
 						if ((this.customizationContainer.buttonDescription == null) || !this.customizationContainer.buttonDescription.equals(call)) {
 							this.handler.history.saveSnapshot(this.handler.history.createSnapshot());
 						}
@@ -355,7 +284,6 @@ public class LayoutVanillaButton extends LayoutElement {
 	@Override
 	public void render(PoseStack matrix, int mouseX, int mouseY) {
 
-		//TODO übernehmen
 		if (this.customizationContainer.customButtonLabel != null) {
 			this.object.value = StringUtils.convertFormatCodes(this.customizationContainer.customButtonLabel, "&", "§");
 		} else {
@@ -369,10 +297,8 @@ public class LayoutVanillaButton extends LayoutElement {
 				this.dragging = false;
 				this.object.posX = this.button.x;
 				this.object.posY = this.button.y;
-				//TODO übernehmen
 				this.object.setWidth(this.button.width);
 				this.object.setHeight(this.button.height);
-				//-------------------
 				GLFW.glfwSetCursor(Minecraft.getInstance().getWindow().getWindow(), normalCursor);
 				this.displaySetOrientationNotification();
 				return;
@@ -383,10 +309,8 @@ public class LayoutVanillaButton extends LayoutElement {
 				this.dragging = false;
 				this.object.posX = this.button.x;
 				this.object.posY = this.button.y;
-				//TODO übernehmen
 				this.object.setWidth(this.button.width);
 				this.object.setHeight(this.button.height);
-				//-------------------
 				this.handler.setObjectFocused(this, false, true);
 				GLFW.glfwSetCursor(Minecraft.getInstance().getWindow().getWindow(), normalCursor);
 				this.displaySetOrientationNotification();
@@ -427,14 +351,11 @@ public class LayoutVanillaButton extends LayoutElement {
 		List<PropertiesSection> l = new ArrayList<PropertiesSection>();
 
 		//hidebutton
-		//TODO übernehmen
 		if (this.customizationContainer.isButtonHidden) {
 			PropertiesSection s = new PropertiesSection("customization");
 			s.addEntry("action", "hidebutton");
 			s.addEntry("identifier", "%id=" + this.button.getId() + "%");
 			l.add(s);
-			//TODO übernehmen
-//			return l;
 		}
 		//movebutton
 		if (this.canBeModified()) {
@@ -451,14 +372,11 @@ public class LayoutVanillaButton extends LayoutElement {
 			PropertiesSection s = new PropertiesSection("customization");
 			s.addEntry("action", "resizebutton");
 			s.addEntry("identifier", "%id=" + this.button.getId() + "%");
-			//TODO übernehmen
 			s.addEntry("width", "" + this.object.getWidth());
 			s.addEntry("height", "" + this.object.getHeight());
-			//-----------------------
 			l.add(s);
 		}
 		// renamebutton
-		//TODO übernehmen
 		if (this.customizationContainer.customButtonLabel != null) {
 			if (!this.customizationContainer.customButtonLabel.equals(this.button.label)) {
 				PropertiesSection s = new PropertiesSection("customization");
@@ -469,7 +387,6 @@ public class LayoutVanillaButton extends LayoutElement {
 			}
 		}
 		// setbuttontexture
-		//TODO übernehmen
 		if ((this.customizationContainer.normalBackground != null) || (this.customizationContainer.hoverBackground != null)) {
 			PropertiesSection s = new PropertiesSection("customization");
 			s.addEntry("action", "setbuttontexture");
@@ -495,7 +412,6 @@ public class LayoutVanillaButton extends LayoutElement {
 			l.add(s);
 		}
 		// clickbutton
-		//TODO übernehmen
 		if (this.customizationContainer.autoButtonClicks > 0) {
 			PropertiesSection s = new PropertiesSection("customization");
 			s.addEntry("action", "clickbutton");
@@ -504,7 +420,6 @@ public class LayoutVanillaButton extends LayoutElement {
 			l.add(s);
 		}
 		//addhoversound
-		//TODO übernehmen
 		if (this.customizationContainer.hoverSound != null) {
 			PropertiesSection s = new PropertiesSection("customization");
 			s.addEntry("action", "addhoversound");
@@ -513,7 +428,6 @@ public class LayoutVanillaButton extends LayoutElement {
 			l.add(s);
 		}
 		//sethoverlabel
-		//TODO übernehmen
 		if (this.customizationContainer.hoverLabel != null) {
 			PropertiesSection s = new PropertiesSection("customization");
 			s.addEntry("action", "sethoverlabel");
@@ -535,7 +449,6 @@ public class LayoutVanillaButton extends LayoutElement {
 			l.add(s);
 		}
 		//setbuttonclicksound
-		//TODO übernehmen
 		if (this.customizationContainer.clickSound != null) {
 			PropertiesSection s = new PropertiesSection("customization");
 			s.addEntry("action", "setbuttonclicksound");
@@ -544,7 +457,6 @@ public class LayoutVanillaButton extends LayoutElement {
 			l.add(s);
 		}
 		//setbuttondescription
-		//TODO übernehmen
 		if (this.customizationContainer.buttonDescription != null) {
 			PropertiesSection s = new PropertiesSection("customization");
 			s.addEntry("action", "setbuttondescription");
@@ -553,14 +465,15 @@ public class LayoutVanillaButton extends LayoutElement {
 			l.add(s);
 		}
 
-		//TODO übernehmen
 		//Visibility Requirements
 		PropertiesSection visReqs = new PropertiesSection("customization");
 		visReqs.addEntry("action", "vanilla_button_visibility_requirements");
 		visReqs.addEntry("identifier", "%id=" + this.button.getId() + "%");
 		this.addVisibilityPropertiesTo(visReqs);
-		l.add(visReqs);
-		//-----------------
+		//TODO übernehmen
+		if (visReqs.getEntries().size() > 2) {
+			l.add(visReqs);
+		}
 
 		return l;
 	}
@@ -574,15 +487,6 @@ public class LayoutVanillaButton extends LayoutElement {
 	private boolean canBeModified() {
 		return !this.object.orientation.equals("original");
 	}
-
-	//TODO übernehmen
-//	private void editLabelCallback(String text) {
-//		if (text == null) {
-//			return;
-//		} else {
-//			this.handler.setVanillaButtonName(this, StringUtils.convertFormatCodes(text, "&", "§"));
-//		}
-//	}
 
 	@Override
 	public void destroyObject() {

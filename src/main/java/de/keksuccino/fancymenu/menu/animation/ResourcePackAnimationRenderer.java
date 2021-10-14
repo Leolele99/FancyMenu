@@ -39,7 +39,6 @@ public class ResourcePackAnimationRenderer implements IAnimationRenderer {
     protected float opacity = 1.0F;
 
     protected boolean ready = false;
-    //TODO übernehmen NEU
     protected boolean sizeSet = false;
 
     /** Renders an animation out of multiple images (frames). **/
@@ -253,7 +252,6 @@ public class ResourcePackAnimationRenderer implements IAnimationRenderer {
         return this.y;
     }
 
-    //TODO übernehmen NEU
     public boolean setupAnimationSize() {
         if (sizeSet) {
             return true;

@@ -20,7 +20,6 @@ public class DynamicValueTextfield extends AdvancedTextField {
 	
 	private static final ResourceLocation VARIABLES_BUTTON_RESOURCE = new ResourceLocation("keksuccino", "add_btn.png");
 
-	//TODO übernehmen
 	public DynamicValueTextfield(Font fontrenderer, int x, int y, int width, int height, boolean handleTextField, CharacterFilter filter) {
 		super(fontrenderer, x, y, width, height, handleTextField, filter);
 		

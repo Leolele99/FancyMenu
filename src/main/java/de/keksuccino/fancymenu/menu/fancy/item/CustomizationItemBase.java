@@ -41,7 +41,6 @@ public abstract class CustomizationItemBase extends GuiComponent {
 	public volatile float fadeInSpeed = 1.0F;
 	public volatile float opacity = 1.0F;
 
-	//TODO übernehmen
 	public VisibilityRequirementContainer visibilityRequirementContainer;
 
 	protected String actionId;
@@ -129,7 +128,6 @@ public abstract class CustomizationItemBase extends GuiComponent {
 			}
 		}
 
-		//TODO übernehmen
 		this.visibilityRequirementContainer = new VisibilityRequirementContainer(item, this);
 
 	}
@@ -205,7 +203,6 @@ public abstract class CustomizationItemBase extends GuiComponent {
 		if (this.value == null) {
 			return false;
 		}
-		//TODO übernehmen
 		if (!this.visibilityRequirementsMet()) {
 			return false;
 		}
@@ -216,17 +213,14 @@ public abstract class CustomizationItemBase extends GuiComponent {
 		return this.actionId;
 	}
 
-	//TODO übernehmen
 	public void setActionId(String id) {
 		this.actionId = id;
 	}
 
-	//TODO übernehmen
 	protected static boolean isEditorActive() {
 		return (Minecraft.getInstance().screen instanceof LayoutEditorScreen);
 	}
 
-	//TODO übernehmen
 	protected boolean visibilityRequirementsMet() {
 		if (isEditorActive()) {
 			return true;
@@ -234,22 +228,18 @@ public abstract class CustomizationItemBase extends GuiComponent {
 		return this.visibilityRequirementContainer.isVisible();
 	}
 
-	//TODO übernehmen
 	public int getWidth() {
 		return this.width;
 	}
 
-	//TODO übernehmen
 	public void setWidth(int width) {
 		this.width = width;
 	}
 
-	//TODO übernehmen
 	public int getHeight() {
 		return this.height;
 	}
 
-	//TODO übernehmen
 	public void setHeight(int height) {
 		this.height = height;
 	}
