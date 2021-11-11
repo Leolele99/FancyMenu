@@ -45,7 +45,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
@@ -84,7 +83,7 @@ public class PlayerEntityCustomizationItem extends CustomizationItemBase {
 		}
 		
 		this.entity = new MenuPlayerEntity(this.playerName);
-		
+
 		String skinUrl = item.getEntryValue("skinurl");
 		if (skinUrl != null) {
 			skinUrl = DynamicValueHelper.convertFromRaw(skinUrl);
@@ -93,8 +92,9 @@ public class PlayerEntityCustomizationItem extends CustomizationItemBase {
 				this.entity.skinLocation = wt.getResourceLocation();
 			}
 		}
-		
-		String skin = item.getEntryValue("skinpath");
+
+		//TODO übernehmen
+		String skin = fixBackslashPath(item.getEntryValue("skinpath"));
 		if ((skin != null) && (this.entity.skinLocation == null)) {
 			ExternalTextureResourceLocation r = TextureHandler.getResource(skin);
 			if (r != null) {
@@ -127,8 +127,9 @@ public class PlayerEntityCustomizationItem extends CustomizationItemBase {
 				this.entity.capeLocation = wt.getResourceLocation();
 			}
 		}
-		
-		String cape = item.getEntryValue("capepath");
+
+		//TODO übernehmen
+		String cape = fixBackslashPath(item.getEntryValue("capepath"));
 		if ((cape != null) && (this.entity.capeLocation == null)) {
 			ExternalTextureResourceLocation r = TextureHandler.getResource(cape);
 			if (r != null) {

@@ -363,6 +363,9 @@ public class LayoutVanillaButton extends LayoutElement {
 			s.addEntry("action", "movebutton");
 			s.addEntry("identifier", "%id=" + this.button.getId() + "%");
 			s.addEntry("orientation", this.object.orientation);
+			if (this.object.orientation.equals("element") && (this.object.orientationElementIdentifier != null)) {
+				s.addEntry("orientation_element", this.object.orientationElementIdentifier);
+			}
 			s.addEntry("x", "" + this.object.posX);
 			s.addEntry("y", "" + this.object.posY);
 			l.add(s);
@@ -470,7 +473,6 @@ public class LayoutVanillaButton extends LayoutElement {
 		visReqs.addEntry("action", "vanilla_button_visibility_requirements");
 		visReqs.addEntry("identifier", "%id=" + this.button.getId() + "%");
 		this.addVisibilityPropertiesTo(visReqs);
-		//TODO übernehmen
 		if (visReqs.getEntries().size() > 2) {
 			l.add(visReqs);
 		}

@@ -23,7 +23,8 @@ public class TextureCustomizationItem extends CustomizationItemBase {
 		super(item);
 		
 		if ((this.action != null) && this.action.equalsIgnoreCase("addtexture")) {
-			this.value = item.getEntryValue("path");
+			//TODO übernehmen
+			this.value = fixBackslashPath(item.getEntryValue("path"));
 			if (this.value != null) {
 				this.value = this.value.replace("\\", "/");
 				

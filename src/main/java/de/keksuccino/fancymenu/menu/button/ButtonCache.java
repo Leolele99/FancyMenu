@@ -131,7 +131,6 @@ public class ButtonCache {
 				if (!buttons.containsKey(id.getId())) {
 					buttons.put(id.getId(), new ButtonData(button.getButton(), id.getId(), LocaleUtils.getKeyForString(button.getButton().getMessage().getString()), s));
 				} else {
-					//TODO übernehmen (ganzen text)
 					if (FancyMenu.config.getOrDefault("showdebugwarnings", true)) {
 						System.out.println("");
 						System.out.println("## WARNING [FANCYMENU]: Overlapping buttons found! ##");
@@ -152,7 +151,6 @@ public class ButtonCache {
 	private static List<ButtonData> cacheButtons(Screen s, int screenWidth, int screenHeight) {
 		caching = true;
 		List<ButtonData> buttonlist = new ArrayList<ButtonData>();
-		//TODO übernehmen
 		List<Long> ids = new ArrayList<Long>();
 		try {
 			//Resetting the button list
@@ -177,10 +175,8 @@ public class ButtonCache {
 					String idRaw = w.x + "" + w.y;
 					long id = 0;
 					if (MathUtils.isLong(idRaw)) {
-						//TODO übernehmen
 						id = getAvailableIdFromBaseId(Long.parseLong(idRaw), ids);
 					}
-					//TODO übernehmen
 					ids.add(id);
 					buttonlist.add(new ButtonData(w, id, LocaleUtils.getKeyForString(w.getMessage().getString()), s));
 				}
@@ -192,7 +188,6 @@ public class ButtonCache {
 		return buttonlist;
 	}
 
-	//TODO übernehmen
 	protected static Long getAvailableIdFromBaseId(long baseId, List<Long> ids) {
 		if (ids.contains(baseId)) {
 			String newId = baseId + "1";

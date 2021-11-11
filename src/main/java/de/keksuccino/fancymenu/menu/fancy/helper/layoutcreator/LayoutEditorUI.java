@@ -10,6 +10,8 @@ import java.util.function.Consumer;
 import com.google.common.io.Files;
 
 import com.mojang.blaze3d.vertex.PoseStack;
+import de.keksuccino.fancymenu.api.item.CustomizationItemContainer;
+import de.keksuccino.fancymenu.api.item.CustomizationItemRegistry;
 import de.keksuccino.fancymenu.menu.animation.AdvancedAnimation;
 import de.keksuccino.fancymenu.menu.animation.AnimationHandler;
 import de.keksuccino.fancymenu.menu.fancy.MenuCustomization;
@@ -1015,6 +1017,23 @@ public class LayoutEditorUI extends UIBase {
 			});
 			this.addContent(shapesButton);
 
+			//TODO übernehmen
+			this.addSeparator();
+
+			//TODO übernehmen
+			/** CUSTOM ITEMS (API) **/
+			for (CustomizationItemContainer c : CustomizationItemRegistry.getItems()) {
+
+				AdvancedButton cusItemButton = new AdvancedButton(0, 0, 0, 20, c.getDisplayName(), (press) -> {
+					this.parent.addContent(c.constructEditorElementInstance(c.constructDefaultItemInstance(), this.parent));
+				});
+				String[] desc = c.getDescription();
+				if ((desc != null) && (desc.length > 0)) {
+					cusItemButton.setDescription(desc);
+				}
+				this.addContent(cusItemButton);
+
+			}
 			
 			super.openMenuAt(x, y, screenWidth, screenHeight);
 		}

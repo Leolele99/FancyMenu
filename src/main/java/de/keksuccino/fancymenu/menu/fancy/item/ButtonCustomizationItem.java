@@ -11,7 +11,6 @@ import de.keksuccino.fancymenu.menu.fancy.MenuCustomization;
 import de.keksuccino.konkrete.gui.content.AdvancedButton;
 import de.keksuccino.konkrete.input.MouseInput;
 import de.keksuccino.konkrete.input.StringUtils;
-import de.keksuccino.konkrete.math.MathUtils;
 import de.keksuccino.konkrete.properties.PropertiesSection;
 import de.keksuccino.konkrete.resources.ExternalTextureResourceLocation;
 import de.keksuccino.konkrete.resources.TextureHandler;
@@ -101,8 +100,10 @@ public class ButtonCustomizationItem extends CustomizationItemBase {
 				this.button.setDescription(StringUtils.splitLines(DynamicValueHelper.convertFromRaw(desc), "%n%"));
 			}
 
-			String backNormal = item.getEntryValue("backgroundnormal");
-			String backHover = item.getEntryValue("backgroundhovered");
+			//TODO übernehmen
+			String backNormal = fixBackslashPath(item.getEntryValue("backgroundnormal"));
+			//TODO übernehmen
+			String backHover = fixBackslashPath(item.getEntryValue("backgroundhovered"));
 			String loopBackAnimations = item.getEntryValue("loopbackgroundanimations");
 			String restartBackAnimationsOnHover = item.getEntryValue("restartbackgroundanimations");
 			String backAnimationNormal = item.getEntryValue("backgroundanimationnormal");
@@ -237,37 +238,37 @@ public class ButtonCustomizationItem extends CustomizationItemBase {
 		return this.button;
 	}
 
-	public Long getId() {
-		int ori = 0;
-		if (this.orientation.equalsIgnoreCase("original")) {
-			ori = 1;
-		} else if (this.orientation.equalsIgnoreCase("top-left")) {
-			ori = 2;
-		} else if (this.orientation.equalsIgnoreCase("mid-left")) {
-			ori = 3;
-		} else if (this.orientation.equalsIgnoreCase("bottom-left")) {
-			ori = 4;
-		} else if (this.orientation.equalsIgnoreCase("top-centered")) {
-			ori = 5;
-		} else if (this.orientation.equalsIgnoreCase("mid-centered")) {
-			ori = 6;
-		} else if (this.orientation.equalsIgnoreCase("bottom-centered")) {
-			ori = 7;
-		} else if (this.orientation.equalsIgnoreCase("top-right")) {
-			ori = 8;
-		} else if (this.orientation.equalsIgnoreCase("mid-right")) {
-			ori = 9;
-		} else if (this.orientation.equalsIgnoreCase("bottom-right")) {
-			ori = 10;
-		}
-
-		String idRaw = "00" + ori + "" + Math.abs(this.posX) + "" + Math.abs(this.posY) + "" + Math.abs(this.getWidth());
-		long id = 0;
-		if (MathUtils.isLong(idRaw)) {
-			id = Long.parseLong(idRaw);
-		}
-		
-		return id;
-	}
+//	public Long getId() {
+//		int ori = 0;
+//		if (this.orientation.equalsIgnoreCase("original")) {
+//			ori = 1;
+//		} else if (this.orientation.equalsIgnoreCase("top-left")) {
+//			ori = 2;
+//		} else if (this.orientation.equalsIgnoreCase("mid-left")) {
+//			ori = 3;
+//		} else if (this.orientation.equalsIgnoreCase("bottom-left")) {
+//			ori = 4;
+//		} else if (this.orientation.equalsIgnoreCase("top-centered")) {
+//			ori = 5;
+//		} else if (this.orientation.equalsIgnoreCase("mid-centered")) {
+//			ori = 6;
+//		} else if (this.orientation.equalsIgnoreCase("bottom-centered")) {
+//			ori = 7;
+//		} else if (this.orientation.equalsIgnoreCase("top-right")) {
+//			ori = 8;
+//		} else if (this.orientation.equalsIgnoreCase("mid-right")) {
+//			ori = 9;
+//		} else if (this.orientation.equalsIgnoreCase("bottom-right")) {
+//			ori = 10;
+//		}
+//
+//		String idRaw = "00" + ori + "" + Math.abs(this.posX) + "" + Math.abs(this.posY) + "" + Math.abs(this.getWidth());
+//		long id = 0;
+//		if (MathUtils.isLong(idRaw)) {
+//			id = Long.parseLong(idRaw);
+//		}
+//
+//		return id;
+//	}
 
 }

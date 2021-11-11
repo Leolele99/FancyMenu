@@ -25,12 +25,17 @@ import de.keksuccino.konkrete.localization.Locals;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.loading.FMLEnvironment;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Mod("fancymenu")
 public class FancyMenu {
 
 	//TODO übernehmen
-	public static final String VERSION = "2.3.4";
+	public static final String VERSION = "2.3.6";
+
+	//TODO übernehmen
+	public static final Logger LOGGER = LogManager.getLogger();
 	
 	public static Config config;
 	
@@ -85,6 +90,12 @@ public class FancyMenu {
 	        	VanillaButtonDescriptionHandler.init();
 
 	        	Konkrete.addPostLoadingEvent("fancymenu", this::onClientSetup);
+
+//				CustomizationItemRegistry.registerItem(new ExampleCustomizationItemContainer());
+//				PlaceholderTextRegistry.registerPlaceholder(new ExamplePlaceholderTextContainer());
+//				PlaceholderTextRegistry.registerPlaceholder(new ExamplePlaceholderTextContainer2());
+//				PlaceholderTextRegistry.registerPlaceholder(new ExamplePlaceholderTextContainerWithoutCategory());
+//				PlaceholderTextRegistry.registerPlaceholder(new ExamplePlaceholderTextContainerOtherCategory());
 
 //				MinecraftForge.EVENT_BUS.register(new Test());
 	        	

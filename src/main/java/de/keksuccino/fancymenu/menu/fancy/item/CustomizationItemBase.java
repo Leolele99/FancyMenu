@@ -11,6 +11,7 @@ import de.keksuccino.konkrete.math.MathUtils;
 import de.keksuccino.konkrete.properties.PropertiesSection;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiComponent;
+import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.screens.Screen;
 
 public abstract class CustomizationItemBase extends GuiComponent {
@@ -30,6 +31,8 @@ public abstract class CustomizationItemBase extends GuiComponent {
 	 */
 	public int posY = 0;
 	public String orientation = "top-left";
+	public String orientationElementIdentifier = null;
+	public CustomizationItemBase orientationElement = null;
 	public int width = -1;
 	public int height = -1;
 
@@ -106,6 +109,11 @@ public abstract class CustomizationItemBase extends GuiComponent {
 			this.orientation = o;
 		}
 
+		String oe = item.getEntryValue("orientation_element");
+		if (oe != null) {
+			this.orientationElementIdentifier = oe;
+		}
+
 		String w = item.getEntryValue("width");
 		if (w != null) {
 			w = DynamicValueHelper.convertFromRaw(w);
@@ -161,6 +169,10 @@ public abstract class CustomizationItemBase extends GuiComponent {
 		if (orientation.equalsIgnoreCase("bottom-right")) {
 			x += w;
 		}
+
+		if (orientation.equalsIgnoreCase("element") && (this.orientationElement != null)) {
+			x += this.getOrientationElementPosX(menu);
+		}
 		
 		return x;
 	}
@@ -195,8 +207,40 @@ public abstract class CustomizationItemBase extends GuiComponent {
 		if (orientation.equalsIgnoreCase("bottom-right")) {
 			y += h;
 		}
+
+		if (orientation.equalsIgnoreCase("element") && (this.orientationElement != null)) {
+			y += this.getOrientationElementPosY(menu);
+		}
 		
 		return y;
+	}
+
+	public int getOrientationElementPosX(Screen menu) {
+		if (this.orientationElement != null) {
+			if (this.orientationElement instanceof VanillaButtonCustomizationItem) {
+				AbstractWidget w = ((VanillaButtonCustomizationItem)this.orientationElement).parent.getButton();
+				if (w != null) {
+					return w.x;
+				}
+			} else {
+				return this.orientationElement.getPosX(menu);
+			}
+		}
+		return 0;
+	}
+
+	public int getOrientationElementPosY(Screen menu) {
+		if (this.orientationElement != null) {
+			if (this.orientationElement instanceof VanillaButtonCustomizationItem) {
+				AbstractWidget w = ((VanillaButtonCustomizationItem)this.orientationElement).parent.getButton();
+				if (w != null) {
+					return w.y;
+				}
+			} else {
+				return this.orientationElement.getPosY(menu);
+			}
+		}
+		return 0;
 	}
 	
 	public boolean shouldRender() {
@@ -256,6 +300,14 @@ public abstract class CustomizationItemBase extends GuiComponent {
 			this.key = key;
 		}
 		
+	}
+
+	//TODO übernehmen
+	public static String fixBackslashPath(String path) {
+		if (path != null) {
+			return path.replace("\\", "/");
+		}
+		return null;
 	}
 
 }
