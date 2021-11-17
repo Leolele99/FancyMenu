@@ -248,10 +248,8 @@ public class DynamicValueTextfield extends AdvancedTextField {
 		UIBase.colorizeButton(localizedText);
 		otherMenu.addContent(localizedText);
 
-		//TODO übernehmen
 		otherMenu.addSeparator();
 
-		//TODO übernehmen
 		//Custom placeholders (API) without category will be added to the Other category
 		for (PlaceholderTextContainer p : PlaceholderTextRegistry.getPlaceholders()) {
 			if (p.getCategory() == null) {
@@ -265,12 +263,9 @@ public class DynamicValueTextfield extends AdvancedTextField {
 				otherMenu.addContent(customPlaceholder);
 			}
 		}
-		//----------------------
 
-		//TODO übernehmen
 		variableMenu.addSeparator();
 
-		//TODO übernehmen
 		/** CUSTOM PLACEHOLDERS WITH CATEGORY (API) **/
 		Map<String, List<PlaceholderTextContainer>> categories = new HashMap<>();
 		for (PlaceholderTextContainer p : PlaceholderTextRegistry.getPlaceholders()) {
@@ -305,7 +300,6 @@ public class DynamicValueTextfield extends AdvancedTextField {
 				customCategoryMenu.addContent(customPlaceholder);
 			}
 		}
-		//----------------------------
 		
 	}
 	

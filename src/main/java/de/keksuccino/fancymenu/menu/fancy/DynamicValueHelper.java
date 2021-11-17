@@ -103,7 +103,6 @@ public class DynamicValueHelper {
 
 		}
 
-		//TODO übernehmen
 		//Handle all custom placeholders added via the API
 		for (PlaceholderTextContainer p : PlaceholderTextRegistry.getPlaceholders()) {
 			in = p.replacePlaceholders(in);

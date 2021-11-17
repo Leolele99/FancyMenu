@@ -37,7 +37,6 @@ public class VanillaButtonCustomizationItem extends CustomizationItemBase {
 		if ((this.action != null) && (this.parent != null)) {
 			
 			if (this.action.equalsIgnoreCase("addhoversound")) {
-				//TODO übernehmen
 				this.value = fixBackslashPath(item.getEntryValue("path"));
 				if (this.value != null) {
 					File f = new File(this.value);

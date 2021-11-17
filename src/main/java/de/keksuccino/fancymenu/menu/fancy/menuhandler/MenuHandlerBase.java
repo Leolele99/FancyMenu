@@ -634,7 +634,6 @@ public class MenuHandlerBase extends GuiComponent {
 			}
 			
 			if (action.equalsIgnoreCase("texturizebackground")) {
-				//TODO übernehmen
 				String value = CustomizationItemBase.fixBackslashPath(sec.getEntryValue("path"));
 				String pano = sec.getEntryValue("wideformat");
 				if (pano == null) {
@@ -791,9 +790,7 @@ public class MenuHandlerBase extends GuiComponent {
 					if ((restartBackAnimationsOnHover != null) && restartBackAnimationsOnHover.equalsIgnoreCase("false")) {
 						this.getContainerForVanillaButton(b).restartAnimationOnHover = false;
 					}
-					//TODO übernehmen
 					String backNormal = CustomizationItemBase.fixBackslashPath(sec.getEntryValue("backgroundnormal"));
-					//TODO übernehmen
 					String backHover = CustomizationItemBase.fixBackslashPath(sec.getEntryValue("backgroundhovered"));
 					if (backNormal != null) {
 						this.getContainerForVanillaButton(b).normalBackground = backNormal;
@@ -816,7 +813,6 @@ public class MenuHandlerBase extends GuiComponent {
 
 			if (action.equalsIgnoreCase("setbuttonclicksound")) {
 				if (b != null) {
-					//TODO übernehmen
 					String path = CustomizationItemBase.fixBackslashPath(sec.getEntryValue("path"));
 					if (path != null) {
 						this.getContainerForVanillaButton(b).clickSound = path;
@@ -940,7 +936,6 @@ public class MenuHandlerBase extends GuiComponent {
 			if (action.equalsIgnoreCase("addaudio")) {
 				if (FancyMenu.config.getOrDefault("playbackgroundsounds", true)) {
 					if ((Minecraft.getInstance().level == null) || FancyMenu.config.getOrDefault("playbackgroundsoundsinworld", false)) {
-						//TODO übernehmen
 						String path = CustomizationItemBase.fixBackslashPath(sec.getEntryValue("path"));
 						String loopString = sec.getEntryValue("loop");
 
@@ -965,7 +960,6 @@ public class MenuHandlerBase extends GuiComponent {
 			}
 			
 			if (action.equalsIgnoreCase("setcloseaudio")) {
-				//TODO übernehmen
 				String path = CustomizationItemBase.fixBackslashPath(sec.getEntryValue("path"));
 
 				if (path != null) {
@@ -984,7 +978,6 @@ public class MenuHandlerBase extends GuiComponent {
 			}
 
 			if (action.equalsIgnoreCase("setopenaudio")) {
-				//TODO übernehmen
 				String path = CustomizationItemBase.fixBackslashPath(sec.getEntryValue("path"));
 
 				if (path != null) {
@@ -1014,7 +1007,6 @@ public class MenuHandlerBase extends GuiComponent {
 			}
 			
 			if (action.equalsIgnoreCase("addsplash")) {
-				//TODO übernehmen
 				String file = CustomizationItemBase.fixBackslashPath(sec.getEntryValue("splashfilepath"));
 				String text = sec.getEntryValue("text");
 				if ((file != null) || (text != null)) {
@@ -1030,7 +1022,6 @@ public class MenuHandlerBase extends GuiComponent {
 				}
 			}
 
-			//TODO übernehmen
 			/** CUSTOM ITEMS (API) **/
 			if (action.startsWith("custom_layout_element:")) {
 				String cusId = action.split("[:]", 2)[1];

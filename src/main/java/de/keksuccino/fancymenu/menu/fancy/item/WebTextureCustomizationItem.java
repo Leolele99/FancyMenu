@@ -19,16 +19,13 @@ import net.minecraft.client.renderer.texture.TextureManager;
 
 public class WebTextureCustomizationItem extends CustomizationItemBase {
 
-	//TODO übernehmen (volatile)
 	public volatile WebTextureResourceLocation texture;
 	public String rawURL = "";
-	//TODO übernehmen
 	public volatile boolean ready = false;
 	
 	public WebTextureCustomizationItem(PropertiesSection item) {
 		super(item);
 
-		//TODO übernehmen
 		if ((this.action != null) && this.action.equalsIgnoreCase("addwebtexture")) {
 			this.value = item.getEntryValue("url");
 			if (this.value != null) {
@@ -82,7 +79,6 @@ public class WebTextureCustomizationItem extends CustomizationItemBase {
 
 	}
 
-	//TODO übernehmen
 	public void render(PoseStack matrix, Screen menu) throws IOException {
 		if (this.shouldRender()) {
 
@@ -117,7 +113,6 @@ public class WebTextureCustomizationItem extends CustomizationItemBase {
 		return super.shouldRender();
 	}
 
-	//TODO übernehmen
 	public static boolean isValidUrl(String url) {
 		if ((url != null) && (url.startsWith("http://") || url.startsWith("https://"))) {
 			try {

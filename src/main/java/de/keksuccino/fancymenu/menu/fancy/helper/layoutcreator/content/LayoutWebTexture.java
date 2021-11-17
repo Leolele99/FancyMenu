@@ -62,7 +62,6 @@ public class LayoutWebTexture extends LayoutElement {
 		return l;
 	}
 
-	//TODO übernehmen
 	@Override
 	protected void handleResize(int mouseX, int mouseY) {
 		if (((WebTextureCustomizationItem)this.object).ready) {

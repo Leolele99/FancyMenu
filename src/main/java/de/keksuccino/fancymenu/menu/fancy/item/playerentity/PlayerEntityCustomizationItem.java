@@ -93,7 +93,6 @@ public class PlayerEntityCustomizationItem extends CustomizationItemBase {
 			}
 		}
 
-		//TODO übernehmen
 		String skin = fixBackslashPath(item.getEntryValue("skinpath"));
 		if ((skin != null) && (this.entity.skinLocation == null)) {
 			ExternalTextureResourceLocation r = TextureHandler.getResource(skin);
@@ -128,7 +127,6 @@ public class PlayerEntityCustomizationItem extends CustomizationItemBase {
 			}
 		}
 
-		//TODO übernehmen
 		String cape = fixBackslashPath(item.getEntryValue("capepath"));
 		if ((cape != null) && (this.entity.capeLocation == null)) {
 			ExternalTextureResourceLocation r = TextureHandler.getResource(cape);

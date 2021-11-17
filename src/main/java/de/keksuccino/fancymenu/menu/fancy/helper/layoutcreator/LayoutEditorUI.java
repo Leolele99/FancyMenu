@@ -1017,10 +1017,8 @@ public class LayoutEditorUI extends UIBase {
 			});
 			this.addContent(shapesButton);
 
-			//TODO übernehmen
 			this.addSeparator();
 
-			//TODO übernehmen
 			/** CUSTOM ITEMS (API) **/
 			for (CustomizationItemContainer c : CustomizationItemRegistry.getItems()) {
 

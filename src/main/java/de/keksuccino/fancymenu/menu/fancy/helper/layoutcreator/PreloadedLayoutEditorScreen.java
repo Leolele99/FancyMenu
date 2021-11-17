@@ -783,7 +783,6 @@ public class PreloadedLayoutEditorScreen extends LayoutEditorScreen {
 						con.add(new LayoutSplashText(new SplashTextCustomizationItem(sec), this));
 					}
 
-					//TODO übernehmen
 					/** CUSTOM ITEMS (API) **/
 					if (action.startsWith("custom_layout_element:")) {
 						String cusId = action.split("[:]", 2)[1];

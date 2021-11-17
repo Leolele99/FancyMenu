@@ -1007,7 +1007,6 @@ public abstract class LayoutElement extends GuiComponent {
 		}
 	}
 
-	//TODO übernehmen (change name)
 	private int getOppositeInt(int i) {
 		if (Math.abs(i) == i) {
 			return Math.negateExact(i);
