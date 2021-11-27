@@ -5,7 +5,7 @@ import java.util.List;
 
 import de.keksuccino.konkrete.events.EventBase;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.widget.PressableWidget;
+import net.minecraft.client.gui.widget.ClickableWidget;
 
 public class ButtonCachedEvent extends EventBase {
 	
@@ -27,8 +27,8 @@ public class ButtonCachedEvent extends EventBase {
 		return this.buttonlist;
 	}
 	
-	public List<PressableWidget> getWidgetList() {
-		List<PressableWidget> l = new ArrayList<PressableWidget>();
+	public List<ClickableWidget> getWidgetList() {
+		List<ClickableWidget> l = new ArrayList<ClickableWidget>();
 		for (ButtonData d : this.buttonlist) {
 			l.add(d.getButton());
 		}

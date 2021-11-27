@@ -16,7 +16,6 @@ import net.minecraft.client.option.GameOptions;
 import net.minecraft.client.resource.language.LanguageManager;
 import net.minecraft.entity.player.PlayerEntity;
 
-@SuppressWarnings("resource")
 public class GuiConstructor {
 	
 	private static Map<Class<?>, Object> parameters = new HashMap<Class<?>, Object>();

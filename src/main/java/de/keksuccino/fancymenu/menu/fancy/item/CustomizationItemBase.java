@@ -11,7 +11,7 @@ import de.keksuccino.konkrete.properties.PropertiesSection;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.widget.PressableWidget;
+import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.util.math.MatrixStack;
 
 public abstract class CustomizationItemBase extends DrawableHelper {
@@ -218,7 +218,7 @@ public abstract class CustomizationItemBase extends DrawableHelper {
 	public int getOrientationElementPosX(Screen menu) {
 		if (this.orientationElement != null) {
 			if (this.orientationElement instanceof VanillaButtonCustomizationItem) {
-				PressableWidget w = ((VanillaButtonCustomizationItem)this.orientationElement).parent.getButton();
+				ClickableWidget w = ((VanillaButtonCustomizationItem)this.orientationElement).parent.getButton();
 				if (w != null) {
 					return w.x;
 				}
@@ -232,7 +232,7 @@ public abstract class CustomizationItemBase extends DrawableHelper {
 	public int getOrientationElementPosY(Screen menu) {
 		if (this.orientationElement != null) {
 			if (this.orientationElement instanceof VanillaButtonCustomizationItem) {
-				PressableWidget w = ((VanillaButtonCustomizationItem)this.orientationElement).parent.getButton();
+				ClickableWidget w = ((VanillaButtonCustomizationItem)this.orientationElement).parent.getButton();
 				if (w != null) {
 					return w.y;
 				}

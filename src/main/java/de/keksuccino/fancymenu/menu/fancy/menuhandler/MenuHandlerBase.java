@@ -68,7 +68,7 @@ import de.keksuccino.konkrete.sound.SoundHandler;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.widget.PressableWidget;
+import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.gui.widget.TexturedButtonWidget;
 import net.minecraft.client.resource.language.I18n;
 import net.minecraft.client.util.Window;
@@ -103,8 +103,8 @@ public class MenuHandlerBase extends DrawableHelper {
 	protected ExternalTextureSlideshowRenderer slideshow;
 
 	protected List<ButtonData> hidden = new ArrayList<ButtonData>();
-	protected Map<PressableWidget, ButtonCustomizationContainer> vanillaButtonCustomizations = new HashMap<PressableWidget, ButtonCustomizationContainer>();
-	protected Map<PressableWidget, VisibilityRequirementContainer> vanillaButtonVisibilityRequirementContainers = new HashMap<PressableWidget, VisibilityRequirementContainer>();
+	protected Map<ClickableWidget, ButtonCustomizationContainer> vanillaButtonCustomizations = new HashMap<ClickableWidget, ButtonCustomizationContainer>();
+	protected Map<ClickableWidget, VisibilityRequirementContainer> vanillaButtonVisibilityRequirementContainers = new HashMap<ClickableWidget, VisibilityRequirementContainer>();
 
 	protected Map<ButtonData, Float> delayAppearanceVanilla = new HashMap<ButtonData, Float>();
 	protected Map<ButtonData, Float> fadeInVanilla = new HashMap<ButtonData, Float>();
@@ -487,7 +487,7 @@ public class MenuHandlerBase extends DrawableHelper {
 		MenuHandlerRegistry.setActiveHandler(this.getMenuIdentifier());
 
 		for (Map.Entry<ButtonData, String> m : this.sharedLayoutProps.descriptions.entrySet()) {
-			PressableWidget w = m.getKey().getButton();
+			ClickableWidget w = m.getKey().getButton();
 			if (w != null) {
 				VanillaButtonDescriptionHandler.setDescriptionFor(w, m.getValue());
 			}
@@ -543,7 +543,7 @@ public class MenuHandlerBase extends DrawableHelper {
 		}
 
 		//Handle vanilla button visibility requirements
-		for (Map.Entry<PressableWidget, VisibilityRequirementContainer> m : this.vanillaButtonVisibilityRequirementContainers.entrySet()) {
+		for (Map.Entry<ClickableWidget, VisibilityRequirementContainer> m : this.vanillaButtonVisibilityRequirementContainers.entrySet()) {
 			boolean isBtnHidden = false;
 			for (ButtonData d : this.hidden) {
 				if (d.getButton() == m.getKey()) {
@@ -597,7 +597,7 @@ public class MenuHandlerBase extends DrawableHelper {
 		String action = sec.getEntryValue("action");
 		if (action != null) {
 			String identifier = sec.getEntryValue("identifier");
-			PressableWidget b = null;
+			ClickableWidget b = null;
 			ButtonData bd = null;
 			if (identifier != null) {
 				bd = getButton(identifier);
@@ -1424,7 +1424,7 @@ public class MenuHandlerBase extends DrawableHelper {
 		if (this.shouldCustomize(MinecraftClient.getInstance().currentScreen)) {
 			if (MenuCustomization.isMenuCustomizable(MinecraftClient.getInstance().currentScreen)) {
 
-				PressableWidget w = e.getWidget();
+				ClickableWidget w = e.getWidget();
 				ButtonCustomizationContainer c = this.vanillaButtonCustomizations.get(w);
 				if (c != null) {
 					String normalBack = c.normalBackground;
@@ -1485,7 +1485,7 @@ public class MenuHandlerBase extends DrawableHelper {
 	}
 
 	protected boolean renderCustomButtomBackground(RenderWidgetBackgroundEvent e, String background) {
-		PressableWidget w = e.getWidget();
+		ClickableWidget w = e.getWidget();
 		MatrixStack matrix = e.getMatrixStack();
 		ButtonCustomizationContainer c = this.vanillaButtonCustomizations.get(w);
 		if (c != null) {
@@ -1530,7 +1530,7 @@ public class MenuHandlerBase extends DrawableHelper {
 	}
 
 	protected void renderBackgroundAnimation(RenderWidgetBackgroundEvent e, IAnimationRenderer ani) {
-		PressableWidget w = e.getWidget();
+		ClickableWidget w = e.getWidget();
 		ButtonCustomizationContainer c = this.vanillaButtonCustomizations.get(w);
 		if (c != null) {
 			if (ani != null) {
@@ -1569,7 +1569,7 @@ public class MenuHandlerBase extends DrawableHelper {
 		}
 	}
 
-	protected ButtonCustomizationContainer getContainerForVanillaButton(PressableWidget w) {
+	protected ButtonCustomizationContainer getContainerForVanillaButton(ClickableWidget w) {
 		if (!this.vanillaButtonCustomizations.containsKey(w)) {
 			ButtonCustomizationContainer c = new ButtonCustomizationContainer();
 			this.vanillaButtonCustomizations.put(w, c);
@@ -1621,7 +1621,7 @@ public class MenuHandlerBase extends DrawableHelper {
 		return null;
 	}
 
-	protected boolean visibilityRequirementsMet(PressableWidget b) {
+	protected boolean visibilityRequirementsMet(ClickableWidget b) {
 		VisibilityRequirementContainer c = this.vanillaButtonVisibilityRequirementContainers.get(b);
 		if (c != null) {
 			return c.isVisible();
@@ -1801,7 +1801,7 @@ public class MenuHandlerBase extends DrawableHelper {
 
 	}
 
-	public boolean isVanillaButtonHidden(PressableWidget w) {
+	public boolean isVanillaButtonHidden(ClickableWidget w) {
 		for (ButtonData d : this.hidden) {
 			if (d.getButton() == w) {
 				return true;
