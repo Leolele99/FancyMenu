@@ -1,15 +1,15 @@
 package de.keksuccino.fancymenu.menu.button;
 
+import net.minecraft.client.gui.widget.ClickableWidget;
 import org.jetbrains.annotations.Nullable;
 
 import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.gui.widget.PressableWidget;
 
 public class ButtonData {
 
 	private long id;
 	private String key;
-	private PressableWidget button;
+	private ClickableWidget button;
 	private Screen screen;
 	private boolean replaced = false;
 	
@@ -19,7 +19,7 @@ public class ButtonData {
 	public int width;
 	public int height;
 
-	public ButtonData(PressableWidget button, long id, @Nullable String key, Screen fromScreen) {
+	public ButtonData(ClickableWidget button, long id, @Nullable String key, Screen fromScreen) {
 		this.id = id;
 		this.key = key;
 		this.button = button;
@@ -31,11 +31,11 @@ public class ButtonData {
 		this.height = button.getHeight();
 	}
 	
-	public PressableWidget getButton() {
+	public ClickableWidget getButton() {
 		return button;
 	}
 
-	public void replaceButton(PressableWidget w) {
+	public void replaceButton(ClickableWidget w) {
 		this.button = w;
 		this.replaced = true;
 	}

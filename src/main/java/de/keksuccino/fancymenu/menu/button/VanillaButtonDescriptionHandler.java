@@ -15,12 +15,12 @@ import de.keksuccino.konkrete.input.StringUtils;
 import de.keksuccino.konkrete.rendering.RenderUtils;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawableHelper;
-import net.minecraft.client.gui.widget.PressableWidget;
+import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.util.math.MatrixStack;
 
 public class VanillaButtonDescriptionHandler {
 	
-	private static Map<PressableWidget, String> descriptions = new HashMap<PressableWidget, String>();
+	private static Map<ClickableWidget, String> descriptions = new HashMap<ClickableWidget, String>();
 	
 	public static void init() {
 		Konkrete.getEventHandler().registerEventsFrom(new VanillaButtonDescriptionHandler());
@@ -33,7 +33,7 @@ public class VanillaButtonDescriptionHandler {
 	
 	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void onDrawScreen(DrawScreenEvent.Post e) {
-		for (Map.Entry<PressableWidget, String> m : descriptions.entrySet()) {
+		for (Map.Entry<ClickableWidget, String> m : descriptions.entrySet()) {
 			if (m.getKey().isHovered()) {
 				renderDescription(e.getMatrixStack(), e.getMouseX(), e.getMouseY(), m.getValue());
 				break;
@@ -41,7 +41,7 @@ public class VanillaButtonDescriptionHandler {
 		}
 	}
 	
-	public static void setDescriptionFor(PressableWidget w, String desc) {
+	public static void setDescriptionFor(ClickableWidget w, String desc) {
 		descriptions.put(w, desc);
 	}
 	

@@ -21,16 +21,16 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.Drawable;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.option.VideoOptionsScreen;
-import net.minecraft.client.gui.widget.PressableWidget;
+import net.minecraft.client.gui.widget.ClickableWidget;
 
 public class ButtonCache {
 
 	private static Map<Long, ButtonData> buttons = new HashMap<Long, ButtonData>();
-	private static Map<Long, PressableWidget> replaced = new HashMap<Long, PressableWidget>();
+	private static Map<Long, ClickableWidget> replaced = new HashMap<Long, ClickableWidget>();
 	private static Screen current = null;
 	private static boolean cached = false;
 	private static boolean caching = false;
-	private static Map<String, PressableWidget> customButtons = new HashMap<String, PressableWidget>();
+	private static Map<String, ClickableWidget> customButtons = new HashMap<String, ClickableWidget>();
 	
 	@SubscribeEvent
 	public void updateCache(GuiScreenEvent.InitGuiEvent.Post e) {
@@ -170,8 +170,8 @@ public class ButtonCache {
 			Field f = ReflectionHelper.findField(Screen.class, "drawables", "field_33816");
 
 			for (Drawable d : (List<Drawable>) f.get(s)) {
-				if (d instanceof PressableWidget) {
-					PressableWidget w = (PressableWidget) d;
+				if (d instanceof ClickableWidget) {
+					ClickableWidget w = (ClickableWidget) d;
 					String idRaw = w.x + "" + w.y;
 					long id = 0;
 					if (MathUtils.isLong(idRaw)) {
@@ -205,7 +205,7 @@ public class ButtonCache {
 	/**
 	 * Returns the button id or -1 if the button has no cached id.
 	 */
-	public static long getIdForButton(PressableWidget w) {
+	public static long getIdForButton(ClickableWidget w) {
 		for (Map.Entry<Long, ButtonData> m : buttons.entrySet()) {
 			if (m.getValue().getButton() == w) {
 				return m.getValue().getId();
@@ -217,7 +217,7 @@ public class ButtonCache {
 	/**
 	 * Returns the button name or null if the button has no cached name.
 	 */
-	public static String getNameForButton(PressableWidget w) {
+	public static String getNameForButton(ClickableWidget w) {
 		for (Map.Entry<Long, ButtonData> m : buttons.entrySet()) {
 			if (m.getValue().getButton() == w) {
 				return m.getValue().label;
@@ -229,7 +229,7 @@ public class ButtonCache {
 	/**
 	 * Returns the button key or null if the button has no cached key.
 	 */
-	public static String getKeyForButton(PressableWidget w) {
+	public static String getKeyForButton(ClickableWidget w) {
 		for (Map.Entry<Long, ButtonData> m : buttons.entrySet()) {
 			if (m.getValue().getButton() == w) {
 				return m.getValue().getKey();
@@ -286,11 +286,11 @@ public class ButtonCache {
 		customButtons.clear();
 	}
 
-	public static void cacheCustomButton(String id, PressableWidget w) {
+	public static void cacheCustomButton(String id, ClickableWidget w) {
 		customButtons.put(id, w);
 	}
 
-	public static PressableWidget getCustomButton(String id) {
+	public static ClickableWidget getCustomButton(String id) {
 		return customButtons.get(id);
 	}
 

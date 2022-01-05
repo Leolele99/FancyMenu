@@ -7,7 +7,7 @@ import de.keksuccino.konkrete.math.MathUtils;
 import de.keksuccino.konkrete.properties.PropertiesSection;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.widget.PressableWidget;
+import net.minecraft.client.gui.widget.ClickableWidget;
 import net.minecraft.client.network.ServerInfo;
 
 import java.util.ArrayList;
@@ -508,7 +508,7 @@ public class VisibilityRequirementContainer {
         //VR: Is Button Hovered
         if (this.vrCheckForButtonHovered) {
             if (this.vrButtonHovered != null) {
-                PressableWidget w = null;
+                ClickableWidget w = null;
                 if (this.vrButtonHovered.startsWith("vanillabtn:")) {
                     String idRaw = this.vrButtonHovered.split("[:]", 2)[1];
                     if (MathUtils.isLong(idRaw)) {
